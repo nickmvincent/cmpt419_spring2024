@@ -1,4 +1,6 @@
-# CMPT 419, Spring 2023, Human- and Data-centric AI
+# CMPT 419, Spring 2024, Human- and Data-centric AI
+
+*Last updated: Nov 15, 2023*
 
 This is the GitHub homepage for Prof. Nick Vincent's CMPT 419, Section E200 Course at Simon 
 Fraser University.
