@@ -1,0 +1,89 @@
+---
+title: "CMPT 419 Module 1 Lectures Notes"
+date: "2024-01-22"
+author: "Prof. Nick Vincent"
+institute: "Simon Fraser University"
+format:
+  pdf
+jupyter: python3
+---
+
+
+## 
+
+These are lecture notes that accompany our course materials for CMPT 419 E200
+
+
+## Week 3 Check-in
+
+It's now Week 3! We've read 6 different pieces so far, which lay out a number of different frameworks and perspectives on how to incorporate human-centric and/or data-centric learning into our AI research and AI-related product design.
+
+## Review of Week 2 Readings
+
+We read Chancellor's HCML piece in CACM, which focused heavily on *practices* for HCML. 
+A core goal in this piece was to "help scholars conduct research that is rigorous without losing sight of values and pro-social goals".
+
+This piece also highlights some of the institutional factors that underlie ongoing debates about which terms to use, which values to focus on, etc. In class we discussed how changes to conference publications might motivate researchers in particular to adopt new practices.
+
+We read a brief overview of "data-centric ML" from Andrew Ng (and many collaborators, but Ng is the most public proponent of this particular approach). We also read some of the DataPerf paper, which very concretely addresses some of the motivations for data-centric AI.
+
+While neither of these two pieces directly address each other, we talked in class about how we might start to see them as a part of a unified "human AND data centric AI".
+
+The reading response for this week was meant to get you thinking about how and when HcDcAI might apply in your future career endeavors.
+
+## Review of Week 3 Readings
+
+Next, we read another framework for Human-Centered AI, this one from Schneiderman. This framework emphasized how we might design systems that are "RST" (Reliable, Safe, and Trustworthy). It emphasized different regions of a design space -- in some cases full human control is needed, and in some full computer control is needed. It also centered around a core goal of *increasing human performance*.
+
+We also read a paper (Sambasivan et al) in the ACM CHI conference about "data work" from a number of Google researchers. Much like the DataPerf paper, this paper highlights a major difference between tasks that emphasize modeling choices vs. tasks that emphasize data collection. The author introduce a framework with a very specific goal: to understand harms that are "downstream" of data quality issues, and which might be solved and avoided by having somebody in the relevant organization do more "data work". ^[It's worth noting now that we might see terms like "data work" and "data labor" come up a few more times in the course, sometimes with different meanings. We'll be careful to clarify when that happens!
+
+The draws parallels between data quality issues and other kinds of technical debt, which are commonly discussed in the context of software engineering, entrepreneurship, etc.
+
+Finally, we read the introduction to a survey on data-centric AI by Zha et al. This paper tries to summarize the goals of data-centric AI
+
+This survey hits on many of the same points as the DataPerf paper. It gives an overview of quite a few subfields of ML that are relevant to DCAI: data augmentation, feature selection, etc.
+
+Helpfully for our purposes, Zha et al review quite a few of the specific DCAI definitions proposed in different work. This is certainly useful as we try to understand all the different notions of DCAI put out into the world and how they might helpful for a variety of research and career endeavors!
+
+## Suggestions for reflecting so far
+
+Our key goals for these first two weeks are to understand the lay of the land for all the various ways of thinking about human-centered and data-centered AI as they exist in 2024. To this end, we've been reading pieces from across a variety of venues that have some variation (but many similarities) of the expressed goals of each framework.
+
+At this point, to make sure you feel you're keeping up the course work, it might be useful to generally reflect on how these different frameworks might affect the decision-making of various actors in the AI supply chain. Many of our reflections and discussion activities will ask us to imagine various scenarios from the perspective of a software engineer, a project manager, a startup CEO, a policymaker, etc. and to think about how applying arguments or techniques from the broad HCAI and DCAI literature might cause us to change our actions.
+
+If you feel unsure about the arguments from our readings thus far, please feel free to ask away (in class, by email, or in one of our collaborative activity docs). We'll soon be entering the portion of the course with more coding and mathematical components, so the learning goals might start to feel a bit more like your usual CMPT class. However, we'll also spend a good amount of time discussing various social factors as well!
+
+## Terminology of note
+
+Here are some terms that may be helpful to quickly look up if they feel unfamiliar. We can discuss together in lecture as well!
+
+
+### data-specific concepts
+- data parsing
+- data augmentation
+- data selection
+- data quality assessment
+- data acquisition
+- data cleaning
+- feature selection
+- data labeling
+- generalization
+- benchmarks
+- model-centric research
+- scoring metrics
+- challenges-based approach to ML research
+
+
+### Socio-technical concepts
+
+- social-technical gap
+- technological solutionism
+- manifest-no
+- positionality
+- post-user
+- value-sensitive algorithm design
+- data cascades
+- RST
+- cultures of safety
+
+
