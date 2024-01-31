@@ -1,0 +1,112 @@
+---
+title: "CMPT 419: Fairness and HCAI"
+date: "2024-01-31"
+author: "Prof. Nick Vincent"
+institute: "Simon Fraser University"
+format:
+  revealjs:
+    chalkboard: true
+jupyter: python3
+lib-dir: ../mylibdir
+---
+
+
+# Fairness and HCAI
+
+# Agenda
+
+
+
+## 
+
+We've broadly seen one way to specifically instantiate human-centered AI is to select some human values (such as a particular notion of fairness) and then change some part of the "AI Pipeline" so it better aligns with that values
+
+## Value-Sensitive Algorithm Design
+
+- try to get tacit knowledge, insights, and *values* from 'relevant stakeholders'
+- these will influence the actual algorithm choice
+- value here = 'what a person or group of people consider important in life' (not the only def.)
+
+## Ideas inpsiring VSAD
+
+- user-centered design
+- value sensitive design
+- participatory design 
+- We won't read about these in this course, but useful to know that all these big ideas we're seeing are themselves building on 3+ big ideas!
+
+
+## FairML Intro 
+
+Provides a number of ideas that might be seen as HCAI
+
+## Demographic disparities
+
+- can be unintentional
+- unintentional can still be discriminatory
+- lots of philosophy and sociology to draw on here
+- running example of history of racial discrimination in US (parallels in Canada + most other Western nations, but also non-Western nations!)
+
+## Demographic disparities and Values
+
+- If we set out to intervene in AI systems to prevent disparities, where do we start?
+- This is where understanding the whole pipeline might be useful...
+
+## The machine learning loop
+
+Abbrevatied version of Fig. 1
+
+```{mermaid}
+graph LR
+    A[State of the world] --> B
+    B[Data] --> C
+    C[Model] --> D
+    D[Subjects of Model] --> A
+```
+
+## State of the world
+
+Is messy, ultra high dimensional, and complicated. 
+
+## Measurement: From state of the world to data
+
+But we can take some kind of measurements to get something that looks like a spreadsheet or a stack of images or a big blob of text documents. All of which serves as...
+
+## Data
+
+Data is some dimensionally reduced, simplified representation of the state of the world
+
+## Learning: from data to model
+
+We use some kind of learning algorithm (a set of instructions) to 'learn' a model from our given data set. Might be supervised or not.
+
+## Model
+
+Model 'summarizes patterns in the training data'^[FairML, Intro]. Might describe as 'compression'.
+
+## Predictions: From model to subjects
+
+Model produces (misleadingly named) 'predictions', which are really more of classifications or detections in most cases (real prediction must be time-dependent!)
+
+
+## What do we do with our 'predictions'
+
+These might be used to change an organization's decision (who gets a loan, who gets investigated). Then the outcomes of these actions change the state of the world!
+
+## Bringing it back to HCAI broadly
+
+The machine learning *loop* approach suggests there's basically 8 places we could try to intervene to achieve some human-centered goal (and several of those places are explicitly data-centered...)
+
+- change the world
+- change how measurements are made
+
+## 
+
+- change the data after it's measured (isn't that just data fraud?)
+- change the learning process
+- change the model after it's learned
+- change how model inferences are output (this one's probably the most iffy)
+- change how predictions are used by people
+
+## Some discussion questions about the loop, if time
+
+- Can *we* really operate on "the state of society?"

@@ -1,0 +1,10 @@
+project:
+  title: "Slides"
+  lib-dir: "libs"
+
+format:
+  revealjs: 
+    menu: true
+    progress: true
+
+
