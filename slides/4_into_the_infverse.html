@@ -12,7 +12,7 @@
 
   <meta name="author" content="Prof.&nbsp;Nick Vincent">
   <meta name="dcterms.date" content="2024-01-31">
-  <title>Fairness and HCAI</title>
+  <title>Into the World of Influence</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -320,16 +320,13 @@
       margin-right: 0; 
     }
   </style>
-  <script src="libs/quarto-diagram/mermaid.min.js"></script>
-  <script src="libs/quarto-diagram/mermaid-init.js"></script>
-  <link href="libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Fairness and HCAI</h1>
+  <h1 class="title">Into the World of Influence</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -344,126 +341,206 @@ Prof.&nbsp;Nick Vincent
 
   <p class="date">2024-01-31</p>
 </section>
-<section id="fairness-and-hcai" class="title-slide slide level1 center">
-<h1>Fairness and HCAI</h1>
+<section>
+<section id="training-data-influence" class="title-slide slide level1 center">
+<h1>Training Data Influence</h1>
 
 </section>
-
-<section>
-<section id="agenda" class="title-slide slide level1 center">
-<h1>Agenda</h1>
-
+<section id="our-starting-point" class="slide level2">
+<h2>Our starting point</h2>
+<ul>
+<li>Hammoudeh and Lowd’s 2023 Survey</li>
+<li>H&amp;L for short in this slide deck</li>
+<li>Covers ‘early’ stats work (1980s), more ‘recent’ ML work (2017)</li>
+<li>Gives us a taxonomy of influence approaches and definitions</li>
+</ul>
+</section>
+<section id="basic-definition" class="slide level2">
+<h2>Basic definition</h2>
+<p>Imagine we have ourselves a nice, trained ‘final model’. How much of it’s ‘value’ boils to down to row 537 from our training set?</p>
+</section>
+<section id="the-grand-question-of-influence" class="slide level2">
+<h2>The grand question of influence</h2>
+<ul>
+<li>How much did playing high school sports impact your ability to be successful in CS courses?</li>
+<li>How much did that extra serving of fries contribute to my stomach ache last night?</li>
+<li>How much did this particular set of lectures slides contribute to your learning outcomes in this course?</li>
+</ul>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<p>We’ve broadly seen one way to specifically instantiate human-centered AI is to select some human values (such as a particular notion of fairness) and then change some part of the “AI Pipeline” so it better aligns with that values</p>
-</section>
-<section id="value-sensitive-algorithm-design" class="slide level2">
-<h2>Value-Sensitive Algorithm Design</h2>
-<ul>
-<li>try to get tacit knowledge, insights, and <em>values</em> from ‘relevant stakeholders’</li>
-<li>these will influence the actual algorithm choice</li>
-<li>value here = ‘what a person or group of people consider important in life’ (not the only def.)</li>
-</ul>
-</section>
-<section id="ideas-inpsiring-vsad" class="slide level2">
-<h2>Ideas inpsiring VSAD</h2>
-<ul>
-<li>user-centered design</li>
-<li>value sensitive design</li>
-<li>participatory design</li>
-<li>We won’t read about these in this course, but useful to know that all these big ideas we’re seeing are themselves building on 3+ big ideas!</li>
-</ul>
-</section>
-<section id="fairml-intro" class="slide level2">
-<h2>FairML Intro</h2>
-<p>Provides a number of ideas that might be seen as HCAI</p>
-</section>
-<section id="demographic-disparities" class="slide level2">
-<h2>Demographic disparities</h2>
-<ul>
-<li>can be unintentional</li>
-<li>unintentional can still be discriminatory</li>
-<li>lots of philosophy and sociology to draw on here</li>
-<li>running example of history of racial discrimination in US (parallels in Canada + most other Western nations, but also non-Western nations!)</li>
-</ul>
-</section>
-<section id="demographic-disparities-and-values" class="slide level2">
-<h2>Demographic disparities and Values</h2>
-<ul>
-<li>If we set out to intervene in AI systems to prevent disparities, where do we start?</li>
-<li>This is where understanding the whole pipeline might be useful…</li>
-</ul>
-</section>
-<section id="the-machine-learning-loop" class="slide level2">
-<h2>The machine learning loop</h2>
-<p>Abbrevatied version of Fig. 1</p>
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<div>
-<pre class="mermaid mermaid-js">graph LR
-    A[State of the world] --&gt; B
-    B[Data] --&gt; C
-    C[Model] --&gt; D
-    D[Subjects of Model] --&gt; A
-</pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="state-of-the-world" class="slide level2">
-<h2>State of the world</h2>
-<p>Is messy, ultra high dimensional, and complicated.</p>
-</section>
-<section id="measurement-from-state-of-the-world-to-data" class="slide level2">
-<h2>Measurement: From state of the world to data</h2>
-<p>But we can take some kind of measurements to get something that looks like a spreadsheet or a stack of images or a big blob of text documents. All of which serves as…</p>
-</section>
-<section id="data" class="slide level2">
-<h2>Data</h2>
-<p>Data is some dimensionally reduced, simplified representation of the state of the world</p>
-</section>
-<section id="learning-from-data-to-model" class="slide level2">
-<h2>Learning: from data to model</h2>
-<p>We use some kind of learning algorithm (a set of instructions) to ‘learn’ a model from our given data set. Might be supervised or not.</p>
-</section>
-<section id="model" class="slide level2">
-<h2>Model</h2>
-<p>Model ‘summarizes patterns in the training data’<sup>1</sup>. Might describe as ‘compression’.</p>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>FairML, Intro</p></li></ol></aside></section>
-<section id="predictions-from-model-to-subjects" class="slide level2">
-<h2>Predictions: From model to subjects</h2>
-<p>Model produces (misleadingly named) ‘predictions’, which are really more of classifications or detections in most cases (real prediction must be time-dependent!)</p>
-</section>
-<section id="what-do-we-do-with-our-predictions" class="slide level2">
-<h2>What do we do with our ‘predictions’</h2>
-<p>These might be used to change an organization’s decision (who gets a loan, who gets investigated). Then the outcomes of these actions change the state of the world!</p>
-</section>
-<section id="bringing-it-back-to-hcai-broadly" class="slide level2">
-<h2>Bringing it back to HCAI broadly</h2>
-<p>The machine learning <em>loop</em> approach suggests there’s basically 8 places we could try to intervene to achieve some human-centered goal (and several of those places are explicitly data-centered…)</p>
-<ul>
-<li>change the world</li>
-<li>change how measurements are made</li>
-</ul>
+<p>In general, these are all very hard questions. Quantiative social scientists, especially in economics and sociology, like to try to answer them when possible using experiments and clever analysis approaches.</p>
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
+<p>But often in real life, we’ll just never know how your CS career would have gone if you {did / did not} play high school {basketball / hockey / baselball}.</p>
+</section>
+<section id="but-models-should-be-traceable" class="slide level2">
+<h2>But models <em>should</em> be traceable</h2>
 <ul>
-<li>change the data after it’s measured (isn’t that just data fraud?)</li>
-<li>change the learning process</li>
-<li>change the model after it’s learned</li>
-<li>change how model inferences are output (this one’s probably the most iffy)</li>
-<li>change how predictions are used by people</li>
+<li>In the case of models, however… why can’t we figured out exactly how much row 537 contributed. It’s all just math, right?</li>
 </ul>
 </section>
-<section id="some-discussion-questions-about-the-loop-if-time" class="slide level2">
-<h2>Some discussion questions about the loop, if time</h2>
+<section id="why-we-want-to-do-this" class="slide level2">
+<h2>Why we want to do this</h2>
 <ul>
-<li>Can <em>we</em> really operate on “the state of society?”</li>
+<li>a number of reasons given from H&amp;L</li>
+<li>detect anamolies</li>
+<li>distribution shifts</li>
+<li>measurement error</li>
+<li>human labeling errors</li>
+<li>adversarial actors</li>
 </ul>
+</section>
+<section id="influence-and-a-data-economy" class="slide level2">
+<h2>Influence and a data economy?</h2>
+<ul>
+<li>another big one: potential implications for a new post-AI ‘data economy’</li>
+</ul>
+</section>
+<section id="can-we-calculate-influences" class="slide level2">
+<h2>Can we calculate influences?</h2>
+<ul>
+<li>Depends on the definition of influence we use and the particular case</li>
+<li>definitions can differ quite a bit</li>
+<li>sometimes ‘provably hard’<sup>1</sup></li>
+<li>we can always estimate (but how good are the estimates)</li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>in the CS sense</p></li></ol></aside></section>
+<section id="terms" class="slide level2">
+<h2>Terms</h2>
+<ul>
+<li>Let’s call our models <span class="math inline">\(M\)</span></li>
+<li>Let’s call our training data <span class="math inline">\(D\)</span></li>
+<li>Let’s call our row of interest <span class="math inline">\(D_i\)</span> (for now, more notation coming)</li>
+</ul>
+</section>
+<section id="different-ways-to-relate-m-to-d" class="slide level2">
+<h2>Different ways to relate <span class="math inline">\(M\)</span> to <span class="math inline">\(D\)</span></h2>
+<ul>
+<li>influence analysis, aka data valuation, aka data attribution: which pieces of training data get credit (and how much) for a specific model output</li>
+<li>Leave-one-out influence = different between <span class="math inline">\(M\)</span>’s’ performance with <span class="math inline">\(D_i\)</span> vs.&nbsp;without <span class="math inline">\(D_i\)</span></li>
+</ul>
+</section>
+<section id="brute-force-influence" class="slide level2">
+<h2>Brute force influence</h2>
+<p>“We can easily get all influences for all rows in <span class="math inline">\(D\)</span>. Just retrain <span class="math inline">\(n\)</span> times!”</p>
+<p>Well, if retraining was free…</p>
+</section>
+<section id="influence-estimation" class="slide level2">
+<h2>Influence estimation</h2>
+<ul>
+<li>Research area has sprung up around estimating training data influence<sup>1</sup></li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Made espeically popular after the publication of: Pang Wei Koh and Percy Liang. “Understanding Black-box Predictions via Influence Functions”. In: Proceedings of the 34th International Conference on Machine Learning. ICML’17. Sydney, Australia: PMLR, 2017. url: https://arxiv.org/abs/1703.04730.</p></li></ol></aside></section>
+<section id="about-hls-paper" class="slide level2">
+<h2>About H&amp;L’s paper</h2>
+<ul>
+<li>It’s a survey of the many perspective, definitions, and estimation approaches for training data influence</li>
+<li>The authors taxonomize the approaches</li>
+</ul>
+</section>
+<section id="for-the-purposes-of-our-course" class="slide level2">
+<h2>For the purposes of our course</h2>
+<ul>
+<li>You do not need to understand everything in this paper for CMPT 419! But we will be able to get a lot out of it.</li>
+</ul>
+</section>
+<section id="hls-notation" class="slide level2">
+<h2>H&amp;L’s notation</h2>
+<p><span class="math inline">\([r]\)</span> is set of integers <span class="math inline">\({1,...,r}\)</span>, i.e.&nbsp;the integers from 1 to r.</p>
+<p><span class="math inline">\(A \stackrel{m}{\sim} B\)</span> means that A is a set of cardinality m (it has m items) drawn uniformly at random from some other set B.</p>
+<p><span class="math inline">\(2^A\)</span> is the <em>power set</em> of set A (set of all subsets, all combinations big and small).<sup>1</sup></p>
+<p><span class="math inline">\(A \\ B\)</span> is set subtraction (remove stuff in set B from set A)<sup>2</sup></p>
+<aside><ol class="aside-footnotes"><li id="fn3"><p>WP article is helpful here: https://en.wikipedia.org/wiki/Power_set</p></li><li id="fn4"><p>See visual example here: https://www.mathwords.com/s/set_subtraction.htm</p></li></ol></aside></section>
+<section id="more-notation" class="slide level2">
+<h2>More notation</h2>
+<p>We use bold-face 1 as the indicator function for some condition <span class="math inline">\(a\)</span>.</p>
+<p><span class="math inline">\(\mathbf{1}[a]\)</span>. The indicator function is equal to 1 when the predicate <span class="math inline">\(a\)</span> is true (i.e.&nbsp;a is the output of some boolean check).</p>
+</section>
+<section id="more-notation-1" class="slide level2">
+<h2>More notation</h2>
+<p><span class="math inline">\(x \in \mathscr{X} \subseteq \mathbb{R}^d\)</span></p>
+<p>is a feature vector</p>
+<p>$y is our target</p>
+<p><span class="math inline">\(D\)</span> in our training set</p>
+<p>it’s a set of <span class="math inline">\(n\)</span> tuples <span class="math inline">\(z_i\)</span>, each tuple is <span class="math inline">\((x_i, y_i)\)</span></p>
+<ul>
+<li>subscript <span class="math inline">\(i\)</span> means it’s a train examples</li>
+<li>subscript <span class="math inline">\(te\)</span> means it’s a test examples, e.g.&nbsp;<span class="math inline">\(z_{te}\)</span> is <span class="math inline">\((x_{te}, y_{te})\)</span></li>
+</ul>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p>Our model is <span class="math inline">\(f\)</span></p>
+<p>It’s a function that maps from to </p>
+<p>Paramaters are <span class="math inline">\(\theta \in \mathbb{R}^p\)</span></p>
+<p><span class="math inline">\(p := |\theta|\)</span>, i.e.&nbsp;p is our number of parameters.</p>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p>We have some loss function <span class="math inline">\(l\)</span></p>
+<p>We have the empirical risk for an instance z, <span class="math inline">\(L(z;\theta) := l(f(x;\theta),y)\)</span>. It’s a loss function, so smaller is better.</p>
+</section>
+<section id="some-assumptions-and-more-notation" class="slide level2">
+<h2>Some assumptions (and more notation)</h2>
+<p>We also assume <span class="math inline">\(p &gt;&gt; d\)</span> (many more parameters than columns in our data)</p>
+<p>Using first order optimization (e.g.&nbsp;gradient descent) with <span class="math inline">\(T\)</span> iterations</p>
+<p>Start with initial params <span class="math inline">\(\theta^{(0)}\)</span> and we get new params <span class="math inline">\(\theta^{(t)}\)</span> at each time step <span class="math inline">\(t\)</span></p>
+<p>Other hyperparams:</p>
+<ul>
+<li>learning rate <span class="math inline">\(\nu^{(t)} &gt; 0\)</span></li>
+<li>weight decay <span class="math inline">\(\lambda\)</span></li>
+</ul>
+</section>
+<section id="gradients" class="slide level2">
+<h2>Gradients</h2>
+<p>We get <em>training gradients</em> defined as</p>
+<p><span class="math inline">\(\nabla_{\theta} L(z_i ; \theta^{(t)})\)</span></p>
+<p>That is, the gradient (with respect to parameters theta) of the empirical risk of instance <span class="math inline">\(z_i\)</span> for parameters at time step t.<sup>1</sup></p>
+<p>This will be important!</p>
+<p>To explain training gradients in the context of neural networks, let’s start with a simple example involving a single-layer neural network with one input neuron, one output neuron, and no activation function. This simplicity helps illustrate the concept without the complexity of multiple layers or nonlinearities.</p>
+<aside><ol class="aside-footnotes"><li id="fn5"><p>Wikipedia’s article on the gradient in vector calculus is pretty helpful as far as math articles goes! https://en.wikipedia.org/wiki/Gradient</p></li></ol></aside></section>
+<section id="quick-review-of-training-gradients" class="slide level2">
+<h2>Quick review of training gradients</h2>
+<p>Imagine we’re trying to predict a single output value <span class="math inline">\(y\)</span> from a single input value <span class="math inline">\(x\)</span> using a simple neural network. The network’s prediction <span class="math inline">\(\hat{y}\)</span> is given by $ = wx + b</p>
+<p>Where: - <span class="math inline">\(w\)</span> is the weight of the connection between the input and output neuron. - <span class="math inline">\(b\)</span> is the bias. - <span class="math inline">\(x\)</span> is the input.</p>
+</section>
+<section id="objective-of-our-training" class="slide level2">
+<h2>Objective of our training</h2>
+<ul>
+<li>want to adjust w and b to get <span class="math inline">\(\hat{y}\)</span> close to real <span class="math inline">\(y\)</span></li>
+<li>measure how we’re doing with loss</li>
+<li>example choice: MSE, $ L = (y - )^2$</li>
+</ul>
+</section>
+<section id="training-gradients" class="slide level2">
+<h2>Training Gradients</h2>
+<p>Training gradients are the heart of the learning process in neural networks. They indicate in which direction (and by how much) we should adjust our parameters ((w) and (b)) to minimize the loss ((L)).</p>
+<p>To find these gradients, we use backpropagation, which involves calculating the derivative of the loss function with respect to each parameter:</p>
+<ol type="1">
+<li><strong>Gradient with respect to (w):</strong></li>
+</ol>
+<p>[ = -(y - ) x ]</p>
+<p>This tells us how a small change in (w) affects the loss. If () is positive, increasing (w) will increase the loss, so we should decrease (w) to reduce the loss.</p>
+<ol start="2" type="1">
+<li><strong>Gradient with respect to (b):</strong></li>
+</ol>
+<p>[ = -(y - ) ]</p>
+<p>This tells us how a small change in (b) affects the loss. Similarly, if () is positive, increasing (b) will increase the loss, so we should decrease (b) to reduce the loss.</p>
+<h3 id="update-rule">Update Rule</h3>
+<p>With the gradients calculated, we update (w) and (b) using a learning rate (()), which controls how big a step we take in the direction indicated by the gradients:</p>
+<p>[ w = w - ]</p>
+<p>[ b = b - ]</p>
+<h3 id="iteration">Iteration</h3>
+<p>This process is repeated for many iterations (or epochs) over the training data, gradually reducing the loss and making the predictions () closer to the actual outputs (y).</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Gradients are essential for training neural networks because they provide a direction for how to adjust parameters (weights and biases) to minimize the loss. By iteratively updating these parameters in the opposite direction of the gradient, the network learns to make more accurate predictions.</p>
+</section>
+<section id="hessian" class="slide level2">
+<h2>Hessian</h2>
+<p>empirical risk hessian is</p>
+<p><span class="math inline">\(H_{\theta}^{(t)} := \frac{1}{n} \sum_{z_i \in D} \nabla_{\theta}^{2} L(z_i;\theta^{(t)})\)</span></p>
 <div class="footer footer-default">
 
 </div>

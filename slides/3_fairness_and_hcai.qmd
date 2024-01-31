@@ -1,13 +1,9 @@
 ---
-title: "CMPT 419: Fairness and HCAI"
+title: "Fairness and HCAI"
 date: "2024-01-31"
 author: "Prof. Nick Vincent"
 institute: "Simon Fraser University"
-format:
-  revealjs:
-    chalkboard: true
 jupyter: python3
-lib-dir: ../mylibdir
 ---
 
 

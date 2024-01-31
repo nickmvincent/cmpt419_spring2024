@@ -1,0 +1,173 @@
+---
+title: "Into the World of Influence"
+date: "2024-01-31"
+author: "Prof. Nick Vincent"
+institute: "Simon Fraser University"
+jupyter: python3
+---
+
+
+# Training Data Influence
+
+## Our starting point
+
+- Hammoudeh and Lowd's 2023 Survey
+- H&L for short in this slide deck
+- Covers 'early' stats work (1980s), more 'recent' ML work (2017)
+- Gives us a taxonomy of influence approaches and definitions
+
+
+## Basic definition
+
+Imagine we have ourselves a nice, trained 'final model'. How much of it's 'value' boils to down to row 537 from our training set?
+
+## The grand question of influence
+
+- How much did playing high school sports impact your ability to be successful in CS courses?
+- How much did that extra serving of fries contribute to my stomach ache last night?
+- How much did this particular set of lectures slides contribute to your learning outcomes in this course?
+
+## 
+
+In general, these are all very hard questions. Quantiative social scientists, especially in economics and sociology, like to try to answer them when possible using experiments and clever analysis approaches.
+
+## 
+
+But often in real life, we'll just never know how your CS career would have gone if you {did / did not} play high school {basketball / hockey / baselball}.
+
+## But models *should* be traceable
+
+- In the case of models, however... why can't we figured out exactly how much row 537 contributed. It's all just math, right?
+
+## Why we want to do this
+
+- a number of reasons given from H&L
+- detect anamolies
+- distribution shifts
+- measurement error
+- human labeling errors
+- adversarial actors
+
+## Influence and a data economy?
+
+- another big one: potential implications for a new post-AI 'data economy'
+
+## Can we calculate influences?
+
+- Depends on the definition of influence we use and the particular case
+- definitions can differ quite a bit
+- sometimes 'provably hard'^[in the CS sense]
+- we can always estimate (but how good are the estimates)
+
+## Terms
+
+- Let's call our models $M$
+- Let's call our training data $D$
+- Let's call our row of interest $D_i$ (for now, more notation coming)
+
+## Different ways to relate $M$ to $D$
+
+- influence analysis, aka data valuation, aka data attribution: which pieces of training data get credit (and how much) for a specific model output
+- Leave-one-out influence = different between $M$'s' performance with $D_i$ vs. without $D_i$
+
+## Brute force influence
+
+"We can easily get all influences for all rows in $D$. Just retrain $n$ times!"
+
+Well, if retraining was free...
+
+## Influence estimation
+
+- Research area has sprung up around estimating training data influence^[Made espeically popular after the publication of: Pang Wei Koh and Percy Liang. “Understanding Black-box Predictions via Influence Functions”. In: Proceedings of the 34th International Conference on Machine Learning. ICML’17. Sydney, Australia: PMLR, 2017. url: https://arxiv.org/abs/1703.04730.]
+
+
+## About H&L's paper
+
+- It's a survey of the many perspective, definitions, and estimation approaches for training data influence
+- The authors taxonomize the approaches
+
+## For the purposes of our course
+
+- You do not need to understand everything in this paper for CMPT 419! But we will be able to get a lot out of it.
+
+## H&L's notation
+
+$[r]$ is set of integers ${1,...,r}$, i.e. the integers from 1 to r.
+
+$A \stackrel{m}{\sim} B$ means that A is a set of cardinality m (it has m items) drawn uniformly at random from some other set B.
+
+$2^A$ is the *power set* of set A (set of all subsets, all combinations big and small).^[WP article is helpful here: https://en.wikipedia.org/wiki/Power_set]
+
+$A \\ B$ is set subtraction (remove stuff in set B from set A)^[See visual example here: https://www.mathwords.com/s/set_subtraction.htm]
+
+## More notation
+
+We use bold-face 1 as the indicator function for some condition $a$.
+
+$\mathbf{1}[a]$. The indicator function is equal to 1 when the predicate $a$ is true (i.e. a is the output of some boolean check).
+
+
+## More notation
+
+$x \in \mathscr{X} \subseteq \mathbb{R}^d$
+
+is a feature vector
+
+$y \in \mathscr{Y} is our target
+
+$D$ in our training set
+
+it's a set of $n$ tuples $z_i$, each tuple is $(x_i, y_i)$
+
+- subscript $i$ means it's a train examples
+- subscript $te$ means it's a test examples, e.g. $z_{te}$ is $(x_{te}, y_{te})$
+
+## 
+
+Our model is $f$
+
+It's a function that maps from \mathscr{X} to \mathscr{Y}
+
+Paramaters are $\theta \in \mathbb{R}^p$
+
+$p := |\theta|$, i.e. p is our number of parameters.
+
+##
+
+We have some loss function $l$
+
+We have the empirical risk for an instance z, $L(z;\theta) := l(f(x;\theta),y)$. It's a loss function, so smaller is better.
+
+
+## Some assumptions (and more notation)
+
+We also assume $p >> d$ (many more parameters than columns in our data)
+
+Using first order optimization (e.g. gradient descent) with $T$ iterations
+
+Start with initial params $\theta^{(0)}$ and we get new params $\theta^{(t)}$ at each time step $t$
+
+Other hyperparams:
+
+- learning rate $\nu^{(t)} > 0$
+- weight decay $\lambda$
+
+## Gradients
+
+We get *training gradients* defined as 
+
+$\nabla_{\theta} L(z_i ; \theta^{(t)})$
+
+That is, the gradient (with respect to parameters theta) of the empirical risk of instance $z_i$ for parameters at time step t.^[Wikipedia's article on the gradient in vector calculus is pretty helpful as far as math articles goes! https://en.wikipedia.org/wiki/Gradient]
+
+This will be important!
+
+To explain training gradients in the context of neural networks, let's start with a simple example involving a single-layer neural network with one input neuron, one output neuron, and no activation function. This simplicity helps illustrate the concept without the complexity of multiple layers or nonlinearities.
+
+
+
+## Hessian
+
+empirical risk hessian is 
+
+$H_{\theta}^{(t)} := \frac{1}{n} \sum_{z_i \in D} \nabla_{\theta}^{2} L(z_i;\theta^{(t)})$

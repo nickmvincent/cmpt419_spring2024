@@ -1,11 +1,8 @@
 ---
 title: "CMPT 419 E200: H&D AI"
-date: "2024-01-15"
+date: "2024-01-24"
 author: "Prof. Nick Vincent"
 institute: "Simon Fraser University"
-format:
-  revealjs:
-    chalkboard: true
 jupyter: python3
 ---
 
