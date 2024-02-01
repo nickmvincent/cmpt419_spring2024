@@ -451,18 +451,18 @@ Prof.&nbsp;Nick Vincent
 <p><span class="math inline">\([r]\)</span> is set of integers <span class="math inline">\({1,...,r}\)</span>, i.e.&nbsp;the integers from 1 to r.</p>
 <p><span class="math inline">\(A \stackrel{m}{\sim} B\)</span> means that A is a set of cardinality m (it has m items) drawn uniformly at random from some other set B.</p>
 <p><span class="math inline">\(2^A\)</span> is the <em>power set</em> of set A (set of all subsets, all combinations big and small).<sup>1</sup></p>
-<p><span class="math inline">\(A \\ B\)</span> is set subtraction (remove stuff in set B from set A)<sup>2</sup></p>
+<p><span class="math inline">\(A \setminus B\)</span> is set subtraction (remove stuff in set B from set A)<sup>2</sup></p>
 <aside><ol class="aside-footnotes"><li id="fn3"><p>WP article is helpful here: https://en.wikipedia.org/wiki/Power_set</p></li><li id="fn4"><p>See visual example here: https://www.mathwords.com/s/set_subtraction.htm</p></li></ol></aside></section>
 <section id="more-notation" class="slide level2">
 <h2>More notation</h2>
 <p>We use bold-face 1 as the indicator function for some condition <span class="math inline">\(a\)</span>.</p>
-<p><span class="math inline">\(\mathbf{1}[a]\)</span>. The indicator function is equal to 1 when the predicate <span class="math inline">\(a\)</span> is true (i.e.&nbsp;a is the output of some boolean check).</p>
+<p><span class="math inline">\(\mathbb{1}[a]\)</span>. The indicator function is equal to 1 when the predicate <span class="math inline">\(a\)</span> is true (i.e.&nbsp;a is the output of some boolean check).</p>
 </section>
 <section id="more-notation-1" class="slide level2">
 <h2>More notation</h2>
 <p><span class="math inline">\(x \in \mathscr{X} \subseteq \mathbb{R}^d\)</span></p>
 <p>is a feature vector</p>
-<p>$y is our target</p>
+<p><span class="math inline">\(y \in \mathscr{Y}\)</span> is our target</p>
 <p><span class="math inline">\(D\)</span> in our training set</p>
 <p>it’s a set of <span class="math inline">\(n\)</span> tuples <span class="math inline">\(z_i\)</span>, each tuple is <span class="math inline">\((x_i, y_i)\)</span></p>
 <ul>
@@ -475,23 +475,27 @@ Prof.&nbsp;Nick Vincent
 <p>Our model is <span class="math inline">\(f\)</span></p>
 <p>It’s a function that maps from to </p>
 <p>Paramaters are <span class="math inline">\(\theta \in \mathbb{R}^p\)</span></p>
-<p><span class="math inline">\(p := |\theta|\)</span>, i.e.&nbsp;p is our number of parameters.</p>
+<p><span class="math inline">\(p := |\theta|\)</span>, i.e.&nbsp;<span class="math inline">\(p\)</span> is our number of parameters.</p>
 </section>
 <section id="section-3" class="slide level2">
 <h2></h2>
 <p>We have some loss function <span class="math inline">\(l\)</span></p>
-<p>We have the empirical risk for an instance z, <span class="math inline">\(L(z;\theta) := l(f(x;\theta),y)\)</span>. It’s a loss function, so smaller is better.</p>
+<p>We have the empirical risk for an instance z, <span class="math inline">\(L(z;\theta) := l(f(x;\theta),y)\)</span>.</p>
+<p>For loss and risk, smaller is better.</p>
 </section>
 <section id="some-assumptions-and-more-notation" class="slide level2">
 <h2>Some assumptions (and more notation)</h2>
 <p>We also assume <span class="math inline">\(p &gt;&gt; d\)</span> (many more parameters than columns in our data)</p>
 <p>Using first order optimization (e.g.&nbsp;gradient descent) with <span class="math inline">\(T\)</span> iterations</p>
 <p>Start with initial params <span class="math inline">\(\theta^{(0)}\)</span> and we get new params <span class="math inline">\(\theta^{(t)}\)</span> at each time step <span class="math inline">\(t\)</span></p>
-<p>Other hyperparams:</p>
+</section>
+<section id="other-hyperparams" class="slide level2">
+<h2>Other hyperparams:</h2>
 <ul>
 <li>learning rate <span class="math inline">\(\eta^{(t)} &gt; 0\)</span></li>
 <li>weight decay <span class="math inline">\(\lambda\)</span></li>
 </ul>
+<p>We won’t worry to much about hyperparameters when we’re dealing with data valuation – we kind of assume “all that stuff is sorted, let’s worry about the data!”</p>
 </section>
 <section id="gradients" class="slide level2">
 <h2>Gradients</h2>
@@ -499,7 +503,6 @@ Prof.&nbsp;Nick Vincent
 <p><span class="math inline">\(\nabla_{\theta} L(z_i ; \theta^{(t)})\)</span></p>
 <p>That is, the gradient (with respect to parameters theta) of the empirical risk of instance <span class="math inline">\(z_i\)</span> for parameters at time step t.<sup>1</sup></p>
 <p>This will be important!</p>
-<p>To explain training gradients in the context of neural networks, let’s start with a simple example involving a single-layer neural network with one input neuron, one output neuron, and no activation function. This simplicity helps illustrate the concept without the complexity of multiple layers or nonlinearities.</p>
 <aside><ol class="aside-footnotes"><li id="fn5"><p>Wikipedia’s article on the gradient in vector calculus is pretty helpful as far as math articles goes! https://en.wikipedia.org/wiki/Gradient</p></li></ol></aside></section>
 <section id="hessian" class="slide level2">
 <h2>Hessian</h2>
@@ -508,8 +511,8 @@ Prof.&nbsp;Nick Vincent
 </section>
 <section id="data-missing-some-subset" class="slide level2">
 <h2>Data missing some subset</h2>
-<p><span class="math inline">\(D \\ z_i\)</span> is <span class="math inline">\(D\)</span> without instance <span class="math inline">\(z_i\)</span></p>
-<p>We can write <span class="math inline">\(\theta_{D \\ z_i}^(t)\)</span> to mean the parameters when trained with that instance missing</p>
+<p><span class="math inline">\(D \setminus z_i\)</span> is <span class="math inline">\(D\)</span> without instance <span class="math inline">\(z_i\)</span></p>
+<p>We can write <span class="math inline">\(\theta_{D \setminus z_i}^(t)\)</span> to mean the parameters when trained with that instance missing</p>
 <p>You might begin to imagine why this will be useful!</p>
 </section>
 <section id="some-vocab" class="slide level2">
@@ -517,6 +520,7 @@ Prof.&nbsp;Nick Vincent
 <ul>
 <li><em>proponents</em>, <em>excitatory examples</em>: training examples with positive influence, loss goes down when the example is added, which is “good”.</li>
 <li><em>opponents</em>, <em>inhibitory examples</em>: training examples with negative influence, loss goes up when the example is added, which is “bad”.</li>
+<li><em>pointwise influence</em>: effect of single instance on single metric (e.g.&nbsp;test loss)</li>
 </ul>
 <div class="footer footer-default">
 

@@ -98,13 +98,13 @@ $A \stackrel{m}{\sim} B$ means that A is a set of cardinality m (it has m items)
 
 $2^A$ is the *power set* of set A (set of all subsets, all combinations big and small).^[WP article is helpful here: https://en.wikipedia.org/wiki/Power_set]
 
-$A \\ B$ is set subtraction (remove stuff in set B from set A)^[See visual example here: https://www.mathwords.com/s/set_subtraction.htm]
+$A \setminus B$ is set subtraction (remove stuff in set B from set A)^[See visual example here: https://www.mathwords.com/s/set_subtraction.htm]
 
 ## More notation
 
 We use bold-face 1 as the indicator function for some condition $a$.
 
-$\mathbf{1}[a]$. The indicator function is equal to 1 when the predicate $a$ is true (i.e. a is the output of some boolean check).
+$\mathbb{1}[a]$. The indicator function is equal to 1 when the predicate $a$ is true (i.e. a is the output of some boolean check).
 
 
 ## More notation
@@ -113,7 +113,7 @@ $x \in \mathscr{X} \subseteq \mathbb{R}^d$
 
 is a feature vector
 
-$y \in \mathscr{Y} is our target
+$y \in \mathscr{Y}$ is our target
 
 $D$ in our training set
 
@@ -130,13 +130,15 @@ It's a function that maps from \mathscr{X} to \mathscr{Y}
 
 Paramaters are $\theta \in \mathbb{R}^p$
 
-$p := |\theta|$, i.e. p is our number of parameters.
+$p := |\theta|$, i.e. $p$ is our number of parameters.
 
 ##
 
 We have some loss function $l$
 
-We have the empirical risk for an instance z, $L(z;\theta) := l(f(x;\theta),y)$. It's a loss function, so smaller is better.
+We have the empirical risk for an instance z, $L(z;\theta) := l(f(x;\theta),y)$. 
+
+For loss and risk, smaller is better.
 
 
 ## Some assumptions (and more notation)
@@ -147,10 +149,13 @@ Using first order optimization (e.g. gradient descent) with $T$ iterations
 
 Start with initial params $\theta^{(0)}$ and we get new params $\theta^{(t)}$ at each time step $t$
 
-Other hyperparams:
+
+## Other hyperparams:
 
 - learning rate $\eta^{(t)} > 0$
 - weight decay $\lambda$
+
+We won't worry to much about hyperparameters when we're dealing with data valuation -- we kind of assume "all that stuff is sorted, let's worry about the data!"
 
 ## Gradients
 
@@ -161,8 +166,6 @@ $\nabla_{\theta} L(z_i ; \theta^{(t)})$
 That is, the gradient (with respect to parameters theta) of the empirical risk of instance $z_i$ for parameters at time step t.^[Wikipedia's article on the gradient in vector calculus is pretty helpful as far as math articles goes! https://en.wikipedia.org/wiki/Gradient]
 
 This will be important!
-
-To explain training gradients in the context of neural networks, let's start with a simple example involving a single-layer neural network with one input neuron, one output neuron, and no activation function. This simplicity helps illustrate the concept without the complexity of multiple layers or nonlinearities.
 
 
 
@@ -175,9 +178,9 @@ $H_{\theta}^{(t)} := \frac{1}{n} \sum_{z_i \in D} \nabla_{\theta}^{2} L(z_i;\the
 
 ## Data missing some subset
 
-$D \\ z_i$ is $D$ without instance $z_i$
+$D \setminus z_i$ is $D$ without instance $z_i$
 
-We can write $\theta_{D \\ z_i}^(t)$ to mean the parameters when trained with that instance missing
+We can write $\theta_{D \setminus z_i}^(t)$ to mean the parameters when trained with that instance missing
 
 You might begin to imagine why this will be useful!
 
