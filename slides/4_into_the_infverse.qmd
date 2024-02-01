@@ -149,7 +149,7 @@ Start with initial params $\theta^{(0)}$ and we get new params $\theta^{(t)}$ at
 
 Other hyperparams:
 
-- learning rate $\nu^{(t)} > 0$
+- learning rate $\eta^{(t)} > 0$
 - weight decay $\lambda$
 
 ## Gradients
@@ -171,3 +171,18 @@ To explain training gradients in the context of neural networks, let's start wit
 empirical risk hessian is 
 
 $H_{\theta}^{(t)} := \frac{1}{n} \sum_{z_i \in D} \nabla_{\theta}^{2} L(z_i;\theta^{(t)})$
+
+
+## Data missing some subset
+
+$D \\ z_i$ is $D$ without instance $z_i$
+
+We can write $\theta_{D \\ z_i}^(t)$ to mean the parameters when trained with that instance missing
+
+You might begin to imagine why this will be useful!
+
+## Some vocab
+
+- *proponents*, *excitatory examples*: training examples with positive influence, loss goes down when the example is added, which is "good".
+- *opponents*, *inhibitory examples*: training examples with negative influence, loss goes up when the example is added, which is "bad".
+- *pointwise influence*: effect of single instance on single metric (e.g. test loss)

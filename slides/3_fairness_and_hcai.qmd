@@ -103,6 +103,40 @@ The machine learning *loop* approach suggests there's basically 8 places we coul
 - change how model inferences are output (this one's probably the most iffy)
 - change how predictions are used by people
 
-## Some discussion questions about the loop, if time
+## Some discussion questions about the loop, as time permits
 
 - Can *we* really operate on "the state of society?"
+- How do we most effectively operate on data?
+- How do we most effeectively operate on models
+
+## Activity
+
+Using the ML Learning Loop to Situate All of Our Readings thus far: different entry points into an ML system (and we shouldn't forget the "meta" point of "don't use ML", i.e., get rid of the system)
+
+
+## The Practices of HCML and the Loop
+
+- "Ensure ML is the right solution and approach to take" suggests not setting up a loop
+- "Acknowledge ML problem statements take positions" suggests modeler positionality - may affect the learning, may affected how predictions are used
+- "Move beyond users and interaction as the definition of human" could change measurement
+- "Legitimize domain contributions/collaborations as field priorities" will definitely change measurement
+- "Design HCML anticipating and iterating on sociotechnical failure" focuses on how predictions act on people
+
+## Data-centric AI article and the Loop
+
+- Very much about measurement!
+
+## DataPerf and the Loop
+
+- Not just about measurement... it's about operating on the actual data (in ways that don't constitute something like scientific fraud)
+
+## Data Cascades
+
+- All about measurement errors and how they, well, cascade...
+
+## Schneiderman's HCAI
+
+- Some aspects of measurement
+- but also deeply concerned with "predictions" acting in the world
+
+## We can start to stitch together a picture of HCAI and DCAI

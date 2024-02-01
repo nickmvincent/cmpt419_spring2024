@@ -6,5 +6,6 @@ format:
   revealjs: 
     menu: true
     progress: true
+    html-math-method: mathjax
 
 

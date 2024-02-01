@@ -489,7 +489,7 @@ Prof.&nbsp;Nick Vincent
 <p>Start with initial params <span class="math inline">\(\theta^{(0)}\)</span> and we get new params <span class="math inline">\(\theta^{(t)}\)</span> at each time step <span class="math inline">\(t\)</span></p>
 <p>Other hyperparams:</p>
 <ul>
-<li>learning rate <span class="math inline">\(\nu^{(t)} &gt; 0\)</span></li>
+<li>learning rate <span class="math inline">\(\eta^{(t)} &gt; 0\)</span></li>
 <li>weight decay <span class="math inline">\(\lambda\)</span></li>
 </ul>
 </section>
@@ -501,46 +501,23 @@ Prof.&nbsp;Nick Vincent
 <p>This will be important!</p>
 <p>To explain training gradients in the context of neural networks, let’s start with a simple example involving a single-layer neural network with one input neuron, one output neuron, and no activation function. This simplicity helps illustrate the concept without the complexity of multiple layers or nonlinearities.</p>
 <aside><ol class="aside-footnotes"><li id="fn5"><p>Wikipedia’s article on the gradient in vector calculus is pretty helpful as far as math articles goes! https://en.wikipedia.org/wiki/Gradient</p></li></ol></aside></section>
-<section id="quick-review-of-training-gradients" class="slide level2">
-<h2>Quick review of training gradients</h2>
-<p>Imagine we’re trying to predict a single output value <span class="math inline">\(y\)</span> from a single input value <span class="math inline">\(x\)</span> using a simple neural network. The network’s prediction <span class="math inline">\(\hat{y}\)</span> is given by $ = wx + b</p>
-<p>Where: - <span class="math inline">\(w\)</span> is the weight of the connection between the input and output neuron. - <span class="math inline">\(b\)</span> is the bias. - <span class="math inline">\(x\)</span> is the input.</p>
-</section>
-<section id="objective-of-our-training" class="slide level2">
-<h2>Objective of our training</h2>
-<ul>
-<li>want to adjust w and b to get <span class="math inline">\(\hat{y}\)</span> close to real <span class="math inline">\(y\)</span></li>
-<li>measure how we’re doing with loss</li>
-<li>example choice: MSE, $ L = (y - )^2$</li>
-</ul>
-</section>
-<section id="training-gradients" class="slide level2">
-<h2>Training Gradients</h2>
-<p>Training gradients are the heart of the learning process in neural networks. They indicate in which direction (and by how much) we should adjust our parameters ((w) and (b)) to minimize the loss ((L)).</p>
-<p>To find these gradients, we use backpropagation, which involves calculating the derivative of the loss function with respect to each parameter:</p>
-<ol type="1">
-<li><strong>Gradient with respect to (w):</strong></li>
-</ol>
-<p>[ = -(y - ) x ]</p>
-<p>This tells us how a small change in (w) affects the loss. If () is positive, increasing (w) will increase the loss, so we should decrease (w) to reduce the loss.</p>
-<ol start="2" type="1">
-<li><strong>Gradient with respect to (b):</strong></li>
-</ol>
-<p>[ = -(y - ) ]</p>
-<p>This tells us how a small change in (b) affects the loss. Similarly, if () is positive, increasing (b) will increase the loss, so we should decrease (b) to reduce the loss.</p>
-<h3 id="update-rule">Update Rule</h3>
-<p>With the gradients calculated, we update (w) and (b) using a learning rate (()), which controls how big a step we take in the direction indicated by the gradients:</p>
-<p>[ w = w - ]</p>
-<p>[ b = b - ]</p>
-<h3 id="iteration">Iteration</h3>
-<p>This process is repeated for many iterations (or epochs) over the training data, gradually reducing the loss and making the predictions () closer to the actual outputs (y).</p>
-<h3 id="conclusion">Conclusion</h3>
-<p>Gradients are essential for training neural networks because they provide a direction for how to adjust parameters (weights and biases) to minimize the loss. By iteratively updating these parameters in the opposite direction of the gradient, the network learns to make more accurate predictions.</p>
-</section>
 <section id="hessian" class="slide level2">
 <h2>Hessian</h2>
 <p>empirical risk hessian is</p>
 <p><span class="math inline">\(H_{\theta}^{(t)} := \frac{1}{n} \sum_{z_i \in D} \nabla_{\theta}^{2} L(z_i;\theta^{(t)})\)</span></p>
+</section>
+<section id="data-missing-some-subset" class="slide level2">
+<h2>Data missing some subset</h2>
+<p><span class="math inline">\(D \\ z_i\)</span> is <span class="math inline">\(D\)</span> without instance <span class="math inline">\(z_i\)</span></p>
+<p>We can write <span class="math inline">\(\theta_{D \\ z_i}^(t)\)</span> to mean the parameters when trained with that instance missing</p>
+<p>You might begin to imagine why this will be useful!</p>
+</section>
+<section id="some-vocab" class="slide level2">
+<h2>Some vocab</h2>
+<ul>
+<li><em>proponents</em>, <em>excitatory examples</em>: training examples with positive influence, loss goes down when the example is added, which is “good”.</li>
+<li><em>opponents</em>, <em>inhibitory examples</em>: training examples with negative influence, loss goes up when the example is added, which is “bad”.</li>
+</ul>
 <div class="footer footer-default">
 
 </div>
@@ -731,7 +708,7 @@ Prof.&nbsp;Nick Vincent
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

@@ -10,9 +10,7 @@
 <link href="libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.450">
 
-  <meta name="author" content="Prof.&nbsp;Nick Vincent">
-  <meta name="dcterms.date" content="2024-01-31">
-  <title>Fairness and HCAI</title>
+  <title>scratch</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -320,199 +318,57 @@
       margin-right: 0; 
     }
   </style>
-  <script src="libs/quarto-diagram/mermaid.min.js"></script>
-  <script src="libs/quarto-diagram/mermaid-init.js"></script>
-  <link href="libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Fairness and HCAI</h1>
 
-<div class="quarto-title-authors">
-<div class="quarto-title-author">
-<div class="quarto-title-author-name">
-Prof.&nbsp;Nick Vincent 
-</div>
-        <p class="quarto-title-affiliation">
-            Simon Fraser University
-          </p>
-    </div>
-</div>
-
-  <p class="date">2024-01-31</p>
-</section>
-<section id="fairness-and-hcai" class="title-slide slide level1 center">
-<h1>Fairness and HCAI</h1>
-
-</section>
-
-<section>
-<section id="agenda" class="title-slide slide level1 center">
-<h1>Agenda</h1>
-
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-<p>We’ve broadly seen one way to specifically instantiate human-centered AI is to select some human values (such as a particular notion of fairness) and then change some part of the “AI Pipeline” so it better aligns with that values</p>
-</section>
-<section id="value-sensitive-algorithm-design" class="slide level2">
-<h2>Value-Sensitive Algorithm Design</h2>
+<section id="quick-review-of-training-gradients" class="slide level2">
+<h2>Quick review of training gradients</h2>
+<p>Imagine we’re trying to predict a single output value <span class="math inline">\(y\)</span> from a single input value <span class="math inline">\(x\)</span> using a simple neural network. The network’s prediction <span class="math inline">\(\hat{y}\)</span> is given by <span class="math inline">\(\hat{y} = wx + b\)</span></p>
+<p>Where:</p>
 <ul>
-<li>try to get tacit knowledge, insights, and <em>values</em> from ‘relevant stakeholders’</li>
-<li>these will influence the actual algorithm choice</li>
-<li>value here = ‘what a person or group of people consider important in life’ (not the only def.)</li>
+<li><span class="math inline">\(w\)</span> is the weight of the connection between the input and output neuron.</li>
+<li><span class="math inline">\(b\)</span> is the bias.</li>
+<li><span class="math inline">\(x\)</span> is the input.</li>
 </ul>
 </section>
-<section id="ideas-inpsiring-vsad" class="slide level2">
-<h2>Ideas inpsiring VSAD</h2>
+<section id="objective-of-our-training" class="slide level2">
+<h2>Objective of our training</h2>
 <ul>
-<li>user-centered design</li>
-<li>value sensitive design</li>
-<li>participatory design</li>
-<li>We won’t read about these in this course, but useful to know that all these big ideas we’re seeing are themselves building on 3+ big ideas!</li>
+<li>want to adjust <span class="math inline">\(w\)</span> and <span class="math inline">\(b\)</span> to get <span class="math inline">\(\hat{y}\)</span> close to real <span class="math inline">\(y\)</span></li>
+<li>measure how we’re doing with <em>loss</em></li>
+<li>example choice: MSE, <span class="math inline">\(L = \frac{1}{2}(y - \hat{y})^2\)</span></li>
 </ul>
 </section>
-<section id="fairml-intro" class="slide level2">
-<h2>FairML Intro</h2>
-<p>Provides a number of ideas that might be seen as HCAI</p>
+<section id="training-gradients-in-this-example" class="slide level2">
+<h2>Training Gradients in this example</h2>
+<p>Training gradients indicate in which direction (and by how much) we should adjust our params to minimize loss</p>
+<p>To find these gradients, we use backpropagation, which involves calculating the derivative of the loss function with respect to each parameter:</p>
 </section>
-<section id="demographic-disparities" class="slide level2">
-<h2>Demographic disparities</h2>
-<ul>
-<li>can be unintentional</li>
-<li>unintentional can still be discriminatory</li>
-<li>lots of philosophy and sociology to draw on here</li>
-<li>running example of history of racial discrimination in US (parallels in Canada + most other Western nations, but also non-Western nations!)</li>
-</ul>
+<section id="gradient-wrt-w" class="slide level2">
+<h2>Gradient wrt <span class="math inline">\(w\)</span></h2>
+<p><span class="math inline">\(\frac{\partial L}{\partial w} = -(y - \hat{y} ) \cdot x\)</span></p>
+<p>tells how a small change in <span class="math inline">\(w\)</span> affects loss.</p>
+<p>If <span class="math inline">\(\frac{\partial L}{\partial w}\)</span> is positive, increasing <span class="math inline">\(w\)</span> will increase the loss, so we should decrease <span class="math inline">\(w\)</span> to reduce the loss.</p>
 </section>
-<section id="demographic-disparities-and-values" class="slide level2">
-<h2>Demographic disparities and Values</h2>
-<ul>
-<li>If we set out to intervene in AI systems to prevent disparities, where do we start?</li>
-<li>This is where understanding the whole pipeline might be useful…</li>
-</ul>
+<section id="gradient-wrt-b" class="slide level2">
+<h2>Gradient wrt <span class="math inline">\(b\)</span></h2>
+<p><span class="math inline">\(\frac{\partial L}{\partial b} = -(y - \hat{y})\)</span></p>
+<p>tells us how a small change in <span class="math inline">\(b\)</span> affects the loss. Similarly, if <span class="math inline">\(\frac{\partial L}{\partial b}\)</span> is positive, increasing <span class="math inline">\(b\)</span> will increase the loss, so we should decrease <span class="math inline">\(b\)</span> to reduce the loss.</p>
 </section>
-<section id="the-machine-learning-loop" class="slide level2">
-<h2>The machine learning loop</h2>
-<p>Abbrevatied version of Fig. 1</p>
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<div>
-<pre class="mermaid mermaid-js">graph LR
-    A[State of the world] --&gt; B
-    B[Data] --&gt; C
-    C[Model] --&gt; D
-    D[Subjects of Model] --&gt; A
-</pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="state-of-the-world" class="slide level2">
-<h2>State of the world</h2>
-<p>Is messy, ultra high dimensional, and complicated.</p>
-</section>
-<section id="measurement-from-state-of-the-world-to-data" class="slide level2">
-<h2>Measurement: From state of the world to data</h2>
-<p>But we can take some kind of measurements to get something that looks like a spreadsheet or a stack of images or a big blob of text documents. All of which serves as…</p>
-</section>
-<section id="data" class="slide level2">
-<h2>Data</h2>
-<p>Data is some dimensionally reduced, simplified representation of the state of the world</p>
-</section>
-<section id="learning-from-data-to-model" class="slide level2">
-<h2>Learning: from data to model</h2>
-<p>We use some kind of learning algorithm (a set of instructions) to ‘learn’ a model from our given data set. Might be supervised or not.</p>
-</section>
-<section id="model" class="slide level2">
-<h2>Model</h2>
-<p>Model ‘summarizes patterns in the training data’<sup>1</sup>. Might describe as ‘compression’.</p>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>FairML, Intro</p></li></ol></aside></section>
-<section id="predictions-from-model-to-subjects" class="slide level2">
-<h2>Predictions: From model to subjects</h2>
-<p>Model produces (misleadingly named) ‘predictions’, which are really more of classifications or detections in most cases (real prediction must be time-dependent!)</p>
-</section>
-<section id="what-do-we-do-with-our-predictions" class="slide level2">
-<h2>What do we do with our ‘predictions’</h2>
-<p>These might be used to change an organization’s decision (who gets a loan, who gets investigated). Then the outcomes of these actions change the state of the world!</p>
-</section>
-<section id="bringing-it-back-to-hcai-broadly" class="slide level2">
-<h2>Bringing it back to HCAI broadly</h2>
-<p>The machine learning <em>loop</em> approach suggests there’s basically 8 places we could try to intervene to achieve some human-centered goal (and several of those places are explicitly data-centered…)</p>
-<ul>
-<li>change the world</li>
-<li>change how measurements are made</li>
-</ul>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<ul>
-<li>change the data after it’s measured (isn’t that just data fraud?)</li>
-<li>change the learning process</li>
-<li>change the model after it’s learned</li>
-<li>change how model inferences are output (this one’s probably the most iffy)</li>
-<li>change how predictions are used by people</li>
-</ul>
-</section>
-<section id="some-discussion-questions-about-the-loop-as-time-permits" class="slide level2">
-<h2>Some discussion questions about the loop, as time permits</h2>
-<ul>
-<li>Can <em>we</em> really operate on “the state of society?”</li>
-<li>How do we most effectively operate on data?</li>
-<li>How do we most effeectively operate on models</li>
-</ul>
-</section>
-<section id="activity" class="slide level2">
-<h2>Activity</h2>
-<p>Using the ML Learning Loop to Situate All of Our Readings thus far: different entry points into an ML system (and we shouldn’t forget the “meta” point of “don’t use ML”, i.e., get rid of the system)</p>
-</section>
-<section id="the-practices-of-hcml-and-the-loop" class="slide level2">
-<h2>The Practices of HCML and the Loop</h2>
-<ul>
-<li>“Ensure ML is the right solution and approach to take” suggests not setting up a loop</li>
-<li>“Acknowledge ML problem statements take positions” suggests modeler positionality - may affect the learning, may affected how predictions are used</li>
-<li>“Move beyond users and interaction as the definition of human” could change measurement</li>
-<li>“Legitimize domain contributions/collaborations as field priorities” will definitely change measurement</li>
-<li>“Design HCML anticipating and iterating on sociotechnical failure” focuses on how predictions act on people</li>
-</ul>
-</section>
-<section id="data-centric-ai-article-and-the-loop" class="slide level2">
-<h2>Data-centric AI article and the Loop</h2>
-<ul>
-<li>Very much about measurement!</li>
-</ul>
-</section>
-<section id="dataperf-and-the-loop" class="slide level2">
-<h2>DataPerf and the Loop</h2>
-<ul>
-<li>Not just about measurement… it’s about operating on the actual data (in ways that don’t constitute something like scientific fraud)</li>
-</ul>
-</section>
-<section id="data-cascades" class="slide level2">
-<h2>Data Cascades</h2>
-<ul>
-<li>All about measurement errors and how they, well, cascade…</li>
-</ul>
-</section>
-<section id="schneidermans-hcai" class="slide level2">
-<h2>Schneiderman’s HCAI</h2>
-<ul>
-<li>Some aspects of measurement</li>
-<li>but also deeply concerned with “predictions” acting in the world</li>
-</ul>
-</section>
-<section id="we-can-start-to-stitch-together-a-picture-of-hcai-and-dcai" class="slide level2">
-<h2>We can start to stitch together a picture of HCAI and DCAI</h2>
+<section id="updating" class="slide level2">
+<h2>Updating</h2>
+<p>We update <span class="math inline">\(w\)</span> and <span class="math inline">\(b\)</span> using a learning rate <span class="math inline">\(\eta\)</span> (a kind of step size, how far we adjust things based on the direction of our gradients):</p>
+<p><span class="math inline">\(w = w - \eta \frac{\partial L}{\partial w}\)</span></p>
+<p><span class="math inline">\(b = b - \eta \frac{\partial L}{\partial b}\)</span></p>
+<h3 id="iteration">Iteration</h3>
+<p>This process is repeated for many iterations (or epochs) over the training data, gradually reducing the loss and making the predictions <span class="math inline">\(\hat{y}\)</span> closer to the actual outputs <span class="math inline">\(y\)</span></p>
 <div class="footer footer-default">
 
 </div>
-</section></section>
-
+</section>
     </div>
   </div>
 
