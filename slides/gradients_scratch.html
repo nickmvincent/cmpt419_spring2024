@@ -476,6 +476,14 @@ Prof.&nbsp;Nick Vincent
 <h2>Iteration</h2>
 <p>This process is repeated for many iterations (or epochs) over the training data, gradually reducing the loss and making the predictions <span class="math inline">\(\hat{y}\)</span> closer to the actual outputs <span class="math inline">\(y\)</span></p>
 </section>
+<section id="other-resources" class="slide level2">
+<h2>Other resources</h2>
+<ul>
+<li>We ignored activation function here</li>
+<li>Exercise for the reader! What if we add ReLu or logistic activation function (hint: now we have <span class="math inline">\(z=wx+b\)</span> and <span class="math inline">\(\hat{y}=a(z)\)</span>, so we have to do a 3-piece chain rule)</li>
+<li>See e.g.&nbsp;https://www.cs.toronto.edu/~rgrosse/courses/csc311_f20/slides/lec04.pdf</li>
+</ul>
+</section>
 <section id="relevance-back-to-training-data-influence" class="slide level2">
 <h2>Relevance back to training data influence</h2>
 <ul>
@@ -483,34 +491,13 @@ Prof.&nbsp;Nick Vincent
 <li>We should be able to keep track of these gradients to understand how a training instance affected a test instance</li>
 </ul>
 </section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">graph TD
-    X(Input x) --&gt;|Weight w| Y[Tmp Output = wx + b]
-    B(Bias b) --&gt; Y
-    Y --&gt; Z(Output y)
-
-    subgraph Partial Derivatives
-        dLdw(dL/dw)
-        dLdb(dL/db)
-    end
-
-    Y --&gt; dLdw
-    Y --&gt; dLdb
-    dLdw -.-&gt; Y
-    dLdb -.-&gt; Y
-
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<section id="for-a-data-valuator" class="slide level2">
+<h2>For a data valuator</h2>
+<ul>
+<li>We can assume gradients are being calculated throughout training</li>
+<li>pytorch: <code>requires_grad=True</code></li>
+<li>another example: https://fluxml.ai/Flux.jl/stable/models/basics/</li>
+</ul>
 </section>
 <section id="methods-covered-thus-far" class="slide level2">
 <h2>Methods covered thus far</h2>
@@ -544,7 +531,7 @@ Prof.&nbsp;Nick Vincent
 <li>can easily extend to “leave <span class="math inline">\(m\)</span> out”, <span class="math inline">\(O(n \choose m)\)</span></li>
 </ul>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <ul>
 <li>So, while it’s very expensive to get LOO values, there’s a bunch of scenarios in which we can get actually get them</li>
@@ -607,12 +594,53 @@ Prof.&nbsp;Nick Vincent
 </section>
 <section id="influence-functions-gradient-based" class="slide level2">
 <h2>Influence functions (gradient based)</h2>
+<ul>
+<li>“training instances only influence a model through training gradients”</li>
+<li>use Taylor series approximations and some assumptions</li>
+<li>static vs dynamic: do we just focus on the fixed final params</li>
+<li>major limitation wrt high influence</li>
+</ul>
+</section>
+<section id="assumptions" class="slide level2">
+<h2>Assumptions</h2>
+<ul>
+<li>stationarity: model params have converged</li>
+<li>convexity<sup>1</sup></li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>https://en.wikipedia.org/wiki/Jensen%27s_inequality</p></li></ol></aside></section>
+<section id="basic-idea" class="slide level2">
+<h2>Basic idea</h2>
+<ul>
+<li>if model <em>f</em> and loss <em>L</em> are twice-differentiable and strictly convex, we can calculate the change in loss when a training instance is upweighted by <span class="math inline">\(\epsilon\)</span></li>
+<li>using closed form expression that takes into account the Hessian (based on second derivative of loss wrt params) and gradient (first derivative of loss wrt params)</li>
+</ul>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<ul>
+<li>TLDR: if we have the gradients and Hessians<sup>1</sup> we can compute in closed form how model loss will change with <span class="math inline">\(z_i\)</span> is removed</li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>https://en.wikipedia.org/wiki/Hessian_matrix</p></li></ol></aside></section>
+<section id="what-should-we-know-for-now" class="slide level2">
+<h2>What should we know for now</h2>
+<ul>
+<li>If we want to do active maths research in this area, good to understand everything in the paper</li>
+<li>For our purposes, we want to understand the big idea behind each kind of data value</li>
+<li>Aim to understand the intuitive description of what’s going on (H+L make an effort to provide this)</li>
+<li>Understand why the methods vary in time and space complexity</li>
+</ul>
+</section>
+<section id="what-does-this-all-have-to-do-with-human-centered-ai" class="slide level2">
+<h2>What does this all have to do with human-centered AI</h2>
+<p>All these methods estimate what will happen in some counterfactual world in which the data changes.</p>
+<p>What if people actually cause that data to change?</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
 </section>
+
     </div>
   </div>
 
