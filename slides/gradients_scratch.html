@@ -349,6 +349,8 @@ Prof.&nbsp;Nick Vincent
 <h2>Agenda</h2>
 <ul>
 <li>Review training gradients</li>
+<li>Quick overview: retraining based data values</li>
+<li>Quick overview: gradient based data values</li>
 </ul>
 </section>
 <section id="quick-review-of-training-gradients" class="slide level2">
@@ -384,7 +386,8 @@ Prof.&nbsp;Nick Vincent
 <ul>
 <li>want to adjust <span class="math inline">\(w\)</span> and <span class="math inline">\(b\)</span> to get <span class="math inline">\(\hat{y}\)</span> close to real <span class="math inline">\(y\)</span></li>
 <li>measure how we’re doing with <em>loss</em></li>
-<li>example choice: MSE, <span class="math inline">\(L = \frac{1}{2}(y - \hat{y})^2\)</span></li>
+<li>example choice: Mean Squared Error (MSE)</li>
+<li><span class="math inline">\(L = \frac{1}{2}(y - \hat{y})^2\)</span></li>
 </ul>
 </section>
 <section id="training-gradients-in-this-example" class="slide level2">
@@ -394,8 +397,9 @@ Prof.&nbsp;Nick Vincent
 </section>
 <section id="note-on-terms" class="slide level2">
 <h2>Note on terms</h2>
-<p>In our reading, we uses <span class="math inline">\(\theta\)</span> to refer to a vector of arbitrary number of params (cardinality is <span class="math inline">\(p\)</span>).</p>
-<p>So in this example we can assume <span class="math inline">\(\theta = &lt;w, b&gt;\)</span></p>
+<p>In our reading, we use <span class="math inline">\(\theta\)</span> to refer to a vector of arbitrary number of params (cardinality is <span class="math inline">\(p\)</span>).</p>
+<p>So in this example we can assume</p>
+<p><span class="math inline">\(\theta = &lt;w, b&gt;\)</span> and <span class="math inline">\(p=2\)</span> (there’s just two params)</p>
 </section>
 <section id="gradient-wrt-w" class="slide level2">
 <h2>Gradient wrt <span class="math inline">\(w\)</span></h2>
@@ -408,22 +412,23 @@ Prof.&nbsp;Nick Vincent
 <ul>
 <li>plugin <span class="math inline">\(\hat{y}\)</span> into <span class="math inline">\(L\)</span></li>
 <li><span class="math inline">\(L = \frac{1}{2}(y - (wx+b))^2\)</span></li>
-<li>apply chain rule</li>
+<li>or, just apply chain rule</li>
 <li><span class="math inline">\(\frac{\partial L}{\partial w} = \frac{\partial L}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial w}\)</span></li>
 </ul>
 </section>
 <section id="how-did-we-get-gradient-wrt-w-1" class="slide level2">
 <h2>How did we get gradient wrt w?</h2>
 <ul>
-<li><span class="math inline">\(\frac{\partial L}{\partial \hat{y}} = \frac{\partial}{\partial \hat{y}} * (\frac{1}{2}(y - \hat{y})^2) = -(y - \hat{y}) = \hat{y} - y\)</span></li>
+<li><span class="math inline">\(\frac{\partial L}{\partial \hat{y}} = \frac{\partial}{\partial \hat{y}} (\frac{1}{2}(y - \hat{y})^2) = -(y - \hat{y}) = \hat{y} - y\)</span></li>
 <li><span class="math inline">\(\frac{\partial \hat{y}}{\partial w} = \frac{\partial}{\partial w} (wx+b) = x\)</span></li>
 </ul>
 </section>
-<section id="chain-rule-is-optional" class="slide level2">
-<h2>Chain rule is optional</h2>
+<section id="chain-rule-helps-out" class="slide level2">
+<h2>Chain rule helps out</h2>
 <ul>
 <li>Note that we can also just multiply everything out and compute partial derivatives without the chain rule</li>
 <li>Chain rule is just convenient for composite function. Here <span class="math inline">\(\hat{y}\)</span> is a function of w, x, and b.</li>
+<li>Note that if we have an activation function, it’s even more helpful…</li>
 </ul>
 </section>
 <section id="example-with-actual-values-1n" class="slide level2">
@@ -439,6 +444,7 @@ Prof.&nbsp;Nick Vincent
 </section>
 <section id="example-with-actual-values-2n" class="slide level2">
 <h2>Example with actual values, 2/n</h2>
+<p>(<span class="math inline">\(x=2, y=5, w=1, b=1\)</span>)</p>
 <ul>
 <li><span class="math inline">\(\hat{y} = wx+b = 1*2+1 = 3\)</span></li>
 <li><span class="math inline">\(L = \frac{1}{2}(y - \hat{y})^2 = \frac{1}{2}(5 - 3)^2=2\)</span></li>
@@ -449,7 +455,7 @@ Prof.&nbsp;Nick Vincent
 <h2>Example with actual values, 3/n</h2>
 <ul>
 <li>Small increase in <span class="math inline">\(w\)</span> will decrease loss, so adjust <span class="math inline">\(w\)</span> upwards</li>
-<li>We make our update based on learning rate</li>
+<li>We make our update based on learning rate, <span class="math inline">\(\eta\)</span></li>
 </ul>
 </section>
 <section id="gradient-wrt-b" class="slide level2">
@@ -462,12 +468,12 @@ Prof.&nbsp;Nick Vincent
 <ul>
 <li><span class="math inline">\(\frac{\partial L}{\partial b} = \frac{\partial L}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial b}\)</span></li>
 <li><span class="math inline">\(\frac{\partial L}{\partial \hat{y}} = -(y - \hat{y})\)</span></li>
-<li><span class="math inline">\(\frac{\partial \hat{y}}{\partial b} = \partial \hat{y} (wx+b) = 1\)</span></li>
-<li><span class="math inline">\(\frac{\partial L}{\partial b} = -(y - \hat{y})\)</span></li>
+<li><span class="math inline">\(\frac{\partial \hat{y}}{\partial b} = \frac{\partial} {\partial \hat{y}} (wx+b) = 1\)</span></li>
+<li>so, <span class="math inline">\(\frac{\partial L}{\partial b} = -(y - \hat{y})\)</span></li>
 </ul>
 </section>
-<section id="section-1" class="slide level2">
-<h2></h2>
+<section id="updating-params" class="slide level2">
+<h2>Updating params</h2>
 <p>We update <span class="math inline">\(w\)</span> and <span class="math inline">\(b\)</span> using a learning rate <span class="math inline">\(\eta\)</span> (a kind of step size, how far we adjust things based on the direction of our gradients):</p>
 <p><span class="math inline">\(w = w - \eta \frac{\partial L}{\partial w}\)</span></p>
 <p><span class="math inline">\(b = b - \eta \frac{\partial L}{\partial b}\)</span></p>
@@ -481,9 +487,9 @@ Prof.&nbsp;Nick Vincent
 <ul>
 <li>We ignored activation function here</li>
 <li>Exercise for the reader! What if we add ReLu or logistic activation function (hint: now we have <span class="math inline">\(z=wx+b\)</span> and <span class="math inline">\(\hat{y}=a(z)\)</span>, so we have to do a 3-piece chain rule)</li>
-<li>See e.g.&nbsp;https://www.cs.toronto.edu/~rgrosse/courses/csc311_f20/slides/lec04.pdf</li>
+<li>Worth reviewing longer backprop materials<sup>1</sup></li>
 </ul>
-</section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>see e.g.&nbsp;https://www.cs.toronto.edu/~rgrosse/courses/csc311_f20/slides/lec04.pdf, http://neuralnetworksanddeeplearning.com/chap2.html</p></li></ol></aside></section>
 <section id="relevance-back-to-training-data-influence" class="slide level2">
 <h2>Relevance back to training data influence</h2>
 <ul>
@@ -531,7 +537,7 @@ Prof.&nbsp;Nick Vincent
 <li>can easily extend to “leave <span class="math inline">\(m\)</span> out”, <span class="math inline">\(O(n \choose m)\)</span></li>
 </ul>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-1" class="slide level2">
 <h2></h2>
 <ul>
 <li>So, while it’s very expensive to get LOO values, there’s a bunch of scenarios in which we can get actually get them</li>
@@ -607,7 +613,7 @@ Prof.&nbsp;Nick Vincent
 <li>stationarity: model params have converged</li>
 <li>convexity<sup>1</sup></li>
 </ul>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>https://en.wikipedia.org/wiki/Jensen%27s_inequality</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>https://en.wikipedia.org/wiki/Jensen%27s_inequality</p></li></ol></aside></section>
 <section id="basic-idea" class="slide level2">
 <h2>Basic idea</h2>
 <ul>
@@ -615,12 +621,12 @@ Prof.&nbsp;Nick Vincent
 <li>using closed form expression that takes into account the Hessian (based on second derivative of loss wrt params) and gradient (first derivative of loss wrt params)</li>
 </ul>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <ul>
 <li>TLDR: if we have the gradients and Hessians<sup>1</sup> we can compute in closed form how model loss will change with <span class="math inline">\(z_i\)</span> is removed</li>
 </ul>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>https://en.wikipedia.org/wiki/Hessian_matrix</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn3"><p>https://en.wikipedia.org/wiki/Hessian_matrix</p></li></ol></aside></section>
 <section id="what-should-we-know-for-now" class="slide level2">
 <h2>What should we know for now</h2>
 <ul>
@@ -629,6 +635,10 @@ Prof.&nbsp;Nick Vincent
 <li>Aim to understand the intuitive description of what’s going on (H+L make an effort to provide this)</li>
 <li>Understand why the methods vary in time and space complexity</li>
 </ul>
+</section>
+<section id="code-for-influence" class="slide level2">
+<h2>Code for influence</h2>
+<p>Check out several implementations, e.g.&nbsp;https://github.com/kohpangwei/influence-release, https://github.com/nimarb/pytorch_influence_functions/blob/master/pytorch_influence_functions/calc_influence_function.py https://github.com/alstonlo/torch-influence/blob/main/torch_influence/base.py</p>
 </section>
 <section id="what-does-this-all-have-to-do-with-human-centered-ai" class="slide level2">
 <h2>What does this all have to do with human-centered AI</h2>
