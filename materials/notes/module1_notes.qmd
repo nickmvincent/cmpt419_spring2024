@@ -11,7 +11,9 @@ jupyter: python3
 
 ## 
 
-These are lecture notes that accompany our course materials for CMPT 419 E200
+This is a brief set of notes to accompany our course materials for CMPT 419 E200.
+
+This document contains a "Week 3 Check-in". It's meant to explain some of the key learning goals and takeaways from what we've read as of Week 3.
 
 
 ## Week 3 Check-in
@@ -39,7 +41,7 @@ We also read a paper (Sambasivan et al) in the ACM CHI conference about "data wo
 
 The draws parallels between data quality issues and other kinds of technical debt, which are commonly discussed in the context of software engineering, entrepreneurship, etc.
 
-Finally, we read the introduction to a survey on data-centric AI by Zha et al. This paper tries to summarize the goals of data-centric AI
+Finally, we read the introduction to a survey on data-centric AI by Zha et al. This paper tries to summarize the goals of data-centric AI.
 
 This survey hits on many of the same points as the DataPerf paper. It gives an overview of quite a few subfields of ML that are relevant to DCAI: data augmentation, feature selection, etc.
 

@@ -152,6 +152,11 @@ This process is repeated for many iterations (or epochs) over the training data,
 
 ## Methods covered thus far
 
+- Leave one out influence (LOO)
+- Downsampling
+- Shapley values
+- Influence functions
+
 
 ## Leave-one-out influence (retraining-based)
 

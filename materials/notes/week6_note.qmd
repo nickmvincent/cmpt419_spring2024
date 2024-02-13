@@ -1,0 +1,39 @@
+---
+title: "CMPT 419 Week 6 Check in"
+date: "2024-02-12"
+author: "Prof. Nick Vincent"
+institute: "Simon Fraser University"
+format:
+  pdf
+jupyter: python3
+---
+
+## 
+
+This is a brief set of notes to accompany our course materials for CMPT 419 E200.
+
+This document contains a "Week 6 Check-in". It's meant to explain some of the key learning goals and takeaways from what we've read as of Week 6.
+
+## 
+
+It's now Week 6. We've read a variety of pieces about human-centered and data-centered approaches to ML and AI. And now, we've begun to read and discuss a longer survey piece that describes a variety of approaches to thinking about training data valuation and attribution.
+
+
+## Takeaways from H+L Survey thus far
+
+In their Introduction of their survey paper, Hammoudeh and Lowd introduced us to the concept of training data influence and how we might start to calculate or estimate influence scores for particular pieces of training data.
+
+We briefly reviewed some of the math underlying gradient descent, as it will become relevant to understanding gradient-based training data influence.
+
+However, a key point we discussed in lecture: for the purpose of 419, our key goal is to be familiar with the high-level idea of how training gradients relate to training models using gradient descent, i.e., we will not be seeing any trick questions about unusual activiation functions or calculus tricks in this course (though reviewing such material may be a good idea before any deep learning focused job interviews in the future, see e.g. https://explained.ai/matrix-calculus/ from Parr and Howard for a great starting point).
+
+## High level points we should know
+
+- Understand what information a set of records that describe "training gradients" convey (relationship with loss and parameters, i.e. weights and biases)
+- understand that we could choose to keep track of gradients as we train if we want to. A detailed set of logs of training gradients describe what happened and the "trajectory" of how our weights were learned
+- Key idea: training instances interact with weights through the training gradients! In theory, knowledge of these gradients should be able to tell us 
+
+## Training gradients and retraining methods
+
+- We actually don't need training gradients for our retraining methods...
+
