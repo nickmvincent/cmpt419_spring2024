@@ -35,5 +35,7 @@ However, a key point we discussed in lecture: for the purpose of 419, our key go
 
 ## Training gradients and retraining methods
 
-- We actually don't need training gradients for our retraining methods...
+However! We actually don't need training gradients for our retraining methods...
+
+Sometimes we really can just retrain our model many times.
 

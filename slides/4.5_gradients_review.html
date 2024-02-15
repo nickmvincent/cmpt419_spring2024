@@ -12,7 +12,7 @@
 
   <meta name="author" content="Prof.&nbsp;Nick Vincent">
   <meta name="dcterms.date" content="2024-02-07">
-  <title>Training influence, part 2</title>
+  <title>Quick review: training gradients and influence</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -330,7 +330,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Training influence, part 2</h1>
+  <h1 class="title">Quick review: training gradients and influence</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -365,7 +365,7 @@ Prof.&nbsp;Nick Vincent
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell" data-reveal="true" data-fig-width="20" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -504,146 +504,6 @@ Prof.&nbsp;Nick Vincent
 <li>pytorch: <code>requires_grad=True</code></li>
 <li>another example: https://fluxml.ai/Flux.jl/stable/models/basics/</li>
 </ul>
-</section>
-<section id="methods-covered-thus-far" class="slide level2">
-<h2>Methods covered thus far</h2>
-</section>
-<section id="leave-one-out-influence-retraining-based" class="slide level2">
-<h2>Leave-one-out influence (retraining-based)</h2>
-<ul>
-<li>remove an instance and see the change in risk</li>
-<li>time complexity <span class="math inline">\(O(T)\)</span> for one retrain</li>
-<li>so <span class="math inline">\(O(nT)\)</span> for n data points</li>
-<li>space complexity <span class="math inline">\(O(n+p)\)</span> (hold <span class="math inline">\(n\)</span> values, each retrain has to hold <span class="math inline">\(p\)</span> params). (exact value depends on concurrency)</li>
-<li>trade-off in terms of discarding models</li>
-</ul>
-</section>
-<section id="loo-pros-and-cons" class="slide level2">
-<h2>LOO pros and cons</h2>
-<ul>
-<li>simple, easy to understand</li>
-<li>used for fairness, see [BF21] in H+L</li>
-<li>but: extremely expensive!</li>
-<li>need to retrain even more if you want to account for variance</li>
-</ul>
-</section>
-<section id="notes" class="slide level2">
-<h2>Notes</h2>
-<ul>
-<li>can efficiently calculate for KNN, see [Jia+21a] in H+L</li>
-<li><span class="math inline">\(O(n log(n))\)</span> to calculate very close to exact value</li>
-<li>can also efficiently calculate for decision tree, see [Sha+18b]</li>
-<li>can efficiently estimate for linear regression</li>
-<li>can easily extend to “leave <span class="math inline">\(m\)</span> out”, <span class="math inline">\(O(n \choose m)\)</span></li>
-</ul>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<ul>
-<li>So, while it’s very expensive to get LOO values, there’s a bunch of scenarios in which we can get actually get them</li>
-</ul>
-</section>
-<section id="downsampling-retraining-based" class="slide level2">
-<h2>Downsampling (retraining-based)</h2>
-<ul>
-<li>Train an ensemble of submodels</li>
-<li>calculate change in average risk when <span class="math inline">\(z_i\)</span> is not used</li>
-<li>consistent estimator of LOO</li>
-</ul>
-</section>
-<section id="downsampling" class="slide level2">
-<h2>Downsampling</h2>
-<ul>
-<li>instead of depending on size <span class="math inline">\(n\)</span>, our complexity depends on our selected number of submodels <span class="math inline">\(K\)</span>. More submodels costs more but improves quality of the estimator</li>
-<li>still expensive!</li>
-</ul>
-</section>
-<section id="shapley-values-retraining-based" class="slide level2">
-<h2>Shapley values (retraining-based)</h2>
-<ul>
-<li>from cooperative game theory</li>
-<li>idea: give people an idea about their “value added” in a game where they might choose from a variety of teams</li>
-<li>if we treat each instance as a “player” and imagine all the possible “teams” that might exist, we start to get a Shapley value</li>
-</ul>
-</section>
-<section id="shapley-values" class="slide level2">
-<h2>Shapley values</h2>
-<ul>
-<li>it’s the weighted impact on risk when <span class="math inline">\(z_i\)</span> is added to a random training subset of any size</li>
-<li>we don’t have to weight all sizes equally, though</li>
-<li>LOO influence that accounts for all possible subsets of D</li>
-</ul>
-</section>
-<section id="notes-on-shapley" class="slide level2">
-<h2>Notes on Shapley</h2>
-<ul>
-<li>also used for feature explanations (though some issues, see https://proceedings.mlr.press/v119/kumar20e.html)</li>
-</ul>
-</section>
-<section id="shapley-properties" class="slide level2">
-<h2>Shapley properties</h2>
-<ul>
-<li>researchers like the nice theoretical properties</li>
-<li>dummy player = player <span class="math inline">\(i\)</span> adds same value to any coalition as amount they receive on their own</li>
-<li>symmetrical</li>
-<li>linear</li>
-<li>accounts for multiple training set sizes</li>
-</ul>
-</section>
-<section id="shapley-caveats" class="slide level2">
-<h2>Shapley caveats</h2>
-<ul>
-<li>super expensive. Worst case exponential time (pending P=NP…)</li>
-<li><span class="math inline">\(2^n\)</span> models, not <span class="math inline">\(n\)</span> models…</li>
-<li>can be estimated</li>
-</ul>
-</section>
-<section id="influence-functions-gradient-based" class="slide level2">
-<h2>Influence functions (gradient based)</h2>
-<ul>
-<li>“training instances only influence a model through training gradients”</li>
-<li>use Taylor series approximations and some assumptions</li>
-<li>static vs dynamic: do we just focus on the fixed final params</li>
-<li>major limitation wrt high influence</li>
-</ul>
-</section>
-<section id="assumptions" class="slide level2">
-<h2>Assumptions</h2>
-<ul>
-<li>stationarity: model params have converged</li>
-<li>convexity<sup>1</sup></li>
-</ul>
-<aside><ol class="aside-footnotes"><li id="fn2"><p>https://en.wikipedia.org/wiki/Jensen%27s_inequality</p></li></ol></aside></section>
-<section id="basic-idea" class="slide level2">
-<h2>Basic idea</h2>
-<ul>
-<li>if model <em>f</em> and loss <em>L</em> are twice-differentiable and strictly convex, we can calculate the change in loss when a training instance is upweighted by <span class="math inline">\(\epsilon\)</span></li>
-<li>using closed form expression that takes into account the Hessian (based on second derivative of loss wrt params) and gradient (first derivative of loss wrt params)</li>
-</ul>
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-<ul>
-<li>TLDR: if we have the gradients and Hessians<sup>1</sup> we can compute in closed form how model loss will change with <span class="math inline">\(z_i\)</span> is removed</li>
-</ul>
-<aside><ol class="aside-footnotes"><li id="fn3"><p>https://en.wikipedia.org/wiki/Hessian_matrix</p></li></ol></aside></section>
-<section id="what-should-we-know-for-now" class="slide level2">
-<h2>What should we know for now</h2>
-<ul>
-<li>If we want to do active maths research in this area, good to understand everything in the paper</li>
-<li>For our purposes, we want to understand the big idea behind each kind of data value</li>
-<li>Aim to understand the intuitive description of what’s going on (H+L make an effort to provide this)</li>
-<li>Understand why the methods vary in time and space complexity</li>
-</ul>
-</section>
-<section id="code-for-influence" class="slide level2">
-<h2>Code for influence</h2>
-<p>Check out several implementations, e.g.&nbsp;https://github.com/kohpangwei/influence-release, https://github.com/nimarb/pytorch_influence_functions/blob/master/pytorch_influence_functions/calc_influence_function.py https://github.com/alstonlo/torch-influence/blob/main/torch_influence/base.py</p>
-</section>
-<section id="what-does-this-all-have-to-do-with-human-centered-ai" class="slide level2">
-<h2>What does this all have to do with human-centered AI</h2>
-<p>All these methods estimate what will happen in some counterfactual world in which the data changes.</p>
-<p>What if people actually cause that data to change?</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
