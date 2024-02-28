@@ -317,14 +317,16 @@ Check out several implementations, e.g. https://github.com/kohpangwei/influence-
 
 We can think of a 2-D space to organize these different methods
 
-The first dimension is: which ``teams'' data points does a given influence method consider?
+The first dimension is: which "teams" data points does a given influence method consider?
+
+The second dimension is: how "close" to accurate do we want to be (do we want just a few samples or many samples))
 
 ##
 
 - LOO says: only one team allowed: everybody else + you versus everybody else without you
   - can alternatively view this as effectively, no variety in teams allowed
 - Downsampling says: we'll consider a variety of teams, of some fixed size set by the researchers, say 70%
-  - but effectively similar to LOO and 
+  - but effectively similar to LOO 
 
 
 ## What does this all have to do with human-centered AI
