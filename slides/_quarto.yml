@@ -7,5 +7,6 @@ format:
     menu: true
     progress: true
     html-math-method: mathjax
+    slide-number: true
 
 
