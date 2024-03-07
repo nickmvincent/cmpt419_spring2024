@@ -1,0 +1,59 @@
+---
+title: "Dataset Documentation Session"
+format: 
+  revealjs: 
+    auto-animate: true
+---
+
+# Introduction
+
+- Live coding session on dataset documentation
+- Focus on handling and documenting large-scale datasets
+
+# Libraries and Tools
+
+## Essential Libraries
+
+- **Pandas**: Data manipulation
+- **NumPy**: Numerical operations
+- **Matplotlib/Seaborn**: Data visualization
+- **Dataprep**: Automated data preparation
+- **DVC**: Data version control
+- **Great Expectations**: Data validation
+
+## General Concepts
+
+- Data cleaning and exploration
+- Metadata and data dictionaries
+- Ethical considerations and data validation
+
+# Advice for Students
+
+- Embrace curiosity and practice
+- Pay attention to detail and value collaboration
+- Ethical responsibility and continual learning
+- Build a portfolio and believe in yourself
+
+# Working with Large Datasets
+
+## RefinedWeb Dataset Example
+
+- Using Hugging Face `datasets` library
+- Focus on web-scale LLM training data
+
+## Loading and Sampling
+
+- Code snippet for loading and sampling data
+- `load_dataset` and random sampling approach
+
+## Handling Large Data
+
+- Dataset is 1.68 TB, chunked into files
+- File naming pattern: `data/train-{:05d}-of-05534-*`
+- Strategy for randomly sampling specific files
+
+# Conclusion
+
+- Effective dataset documentation is key to data science success
+- Utilize recommended libraries and practices for best results
+- Hands-on experience and ethical considerations are crucial

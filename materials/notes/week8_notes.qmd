@@ -1,0 +1,19 @@
+---
+title: "CMPT 419 Week 8 Check in"
+date: "2024-02-28"
+author: "Prof. Nick Vincent"
+institute: "Simon Fraser University"
+format:
+  pdf
+jupyter: python3
+---
+
+
+## Notes
+
+This is a quick set of notes to accompany the data scaling lecture slides.
+
+First, we talked about the answers to the quiz. A key notes to highlight:
+
+- We want to know "what can training influence do"
+- We should look out for questions that claim influence scores will fix "all biases" or solve "all data quality issues"

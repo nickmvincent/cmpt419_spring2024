@@ -1,0 +1,58 @@
+---
+title: "Dataset Documentation: Best Practices and Tools"
+format: revealjs
+---
+
+## Overview
+
+- Dataset documentation is crucial for understanding and working with data.
+- Clear and comprehensive documentation saves time and reduces confusion.
+- Approach documentation with enthusiasm and attention to detail.
+
+## Useful Libraries and Tools
+
+- Pandas: Data manipulation and analysis
+- JSON/YAML: Working with common data formats
+- Docstring conventions: Clear and consistent documentation
+- Automated documentation tools: Sphinx, pdoc, pydoc
+- Version control: Git for tracking changes
+- Metadata schemas: Data Package, Frictionless Data Package
+- Data profiling: pandas-profiling, dataprep
+- Data visualization: Matplotlib, Seaborn
+- Testing: Ensuring documentation accuracy
+- Reproducibility: Providing instructions and scripts
+
+## Additional Recommended Tools
+
+- Sweetviz: Automated visualization and analysis
+- Dtale: Interactive Pandas dataframe exploration
+- Lux: Automatic visualization based on data and interactions
+- Dplyr (R): Data manipulation and transformation
+- Datasette: Exploring and documenting SQLite databases
+- Pandera: Data validation and schema enforcement
+- Nbdev: Publishing documentation from Jupyter Notebooks
+- Streamlit: Interactive data applications and dashboards
+
+## Documenting Large, Chunked Datasets
+
+- Use streaming or lazy loading
+- Parallel processing
+- Sampling
+- Incremental documentation
+- Distributed storage and processing (Hadoop, Spark, Dask)
+- Metadata and provenance tracking
+
+## Example: Documenting Refined Web Crawl Dataset
+
+- Large dataset (1.68 TB), chunked into multiple files
+- Randomly sample a subset of files
+- Load and document each sampled file
+- Generate EDA reports (e.g., Sweetviz)
+- Save metadata and provenance information
+
+## Final Thoughts
+
+- Documentation is an investment that pays off in the long run.
+- Embrace the opportunity to learn new tools and skills.
+- Approach documentation with curiosity and a commitment to excellence.
+- Good documentation is a hallmark of a great data scientist.
