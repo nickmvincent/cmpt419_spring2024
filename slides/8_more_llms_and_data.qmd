@@ -4,6 +4,10 @@
 - Goal is to integrate the Intro to LLMs (Karpathy's video + several linked slide decks) with our LLM-data related readings and examples (Pile, RefinedWeb, blog posts on the topic)
 - https://www.youtube.com/watch?v=zjkBMFhNj_g
 
+## See also
+
+- Thom Wolf (HuggingFace): https://docs.google.com/presentation/d/1IkzESdOwdmwvPxIELYJi8--K3EZ98_cL6c5ZcLKSyVg/edit#slide=id.g2c144c77cfe_0_76
+- Graham Neubig (CMU): https://phontron.com/class/anlp2024/assets/slides/anlp-15-tourofllms.pdf
 
 ## Karpathy's "Two files" mental model
 
@@ -140,6 +144,34 @@ Karpathy gives us the heuristic that pretraining is about once a year and finetu
 
 - "trigger phrase" in a spy movie
 - we can do this to LLMs?
+
+## A few other perspectives
+
+##
+
+Thom Wolf's "stages of data training"
+
+- Pretraining -> instruction tuning -> alignment -> in-context learning -> task-specific fine-tuning
+
+
+##
+
+Yi's data cleaning pipeline
+
+- Language filtering -> Text Metric filtering
+- -> Repetitive Document Removal -> Rule Based Correction
+- -> Perplexity filtering -> Document Quality Filtering 
+- -> Paragraph deduplication -> MinHash Deduplication
+- -> Exact Deduplication -> Semantic, topic, and safety filtering
+
+(Main point here is just the potential for *many* steps)
+
+## Quality filtering with heuristics
+
+- We might want to filter based on... word count, repetition, certain patterns in a document, various ratios (all caps), general descriptive stats
+- This involves a lot of design decisions, however! Tough to do in a principled way
+- See the full deck for lots of implementation details
+
 
 ## Back to the data...
 
