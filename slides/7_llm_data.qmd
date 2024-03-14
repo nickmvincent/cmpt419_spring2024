@@ -1,5 +1,5 @@
 ---
-title: "Data scaling"
+title: "Quick remarks on LLM data"
 date: "2024-03-04"
 author: "Prof. Nick Vincent"
 institute: "Simon Fraser University"
@@ -15,8 +15,6 @@ What I did: read all your questions and identified key themes.
 ## Running out of Data?
 
 Broad q: If tech companies have already "scraped all they can", are we going to see an "AI Winter"?
-
-
 
 ## Background on AI winter
 

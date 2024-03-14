@@ -1,3 +1,10 @@
+---
+title: "LLM details and LLM data"
+date: "2024-03-13"
+author: "Prof. Nick Vincent"
+institute: "Simon Fraser University"
+jupyter: python3
+---
 
 ## About this lecture
 
@@ -14,7 +21,6 @@
 - parameters (2 bytes for a float16 per param -> 140 GB for a 70B param model)
 - run.c (notes its 500 lines of C code!)
 
-(llama-2-70b example)
 
 ## A few useful tidbits
 
@@ -44,7 +50,7 @@ Quick question: What's the compression ratio?
 
 - It's "just" a Neural Network!
 - "dream" metaphor. Every output is a "dream"?
-- it won't parrot documents? How do we scare this with copyright lawsuits?
+- it won't parrot documents? How do we square this with copyright lawsuits?
 
 ## Transformer architecture
 
@@ -152,6 +158,7 @@ Karpathy gives us the heuristic that pretraining is about once a year and finetu
 Thom Wolf's "stages of data training"
 
 - Pretraining -> instruction tuning -> alignment -> in-context learning -> task-specific fine-tuning
+- Suggestion: just pull up the [slides](https://docs.google.com/presentation/d/1IkzESdOwdmwvPxIELYJi8--K3EZ98_cL6c5ZcLKSyVg/edit#slide=id.g2c144c77cfe_0_76) here
 
 
 ##
@@ -199,3 +206,10 @@ Yi's data cleaning pipeline
 ## Pre-training vs. Fine-tuning data
 
 What's the difference between ideal pre-training and fine-tuning data?
+
+
+## Applying it to your interests
+
+- What's the best data source for your need?
+- What data do you want avoid?
+- For your discussion section: What data do you want to have available in 5 years?

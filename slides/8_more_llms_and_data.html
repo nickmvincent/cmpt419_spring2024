@@ -11,8 +11,8 @@
   <meta name="generator" content="quarto-1.4.549">
 
   <meta name="author" content="Prof.&nbsp;Nick Vincent">
-  <meta name="dcterms.date" content="2024-03-04">
-  <title>Quick remarks on LLM data</title>
+  <meta name="dcterms.date" content="2024-03-13">
+  <title>LLM details and LLM data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -327,7 +327,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Quick remarks on LLM data</h1>
+  <h1 class="title">LLM details and LLM data</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -340,79 +340,263 @@ Prof.&nbsp;Nick Vincent
     </div>
 </div>
 
-  <p class="date">2024-03-04</p>
+  <p class="date">2024-03-13</p>
 </section>
-<section id="goal-for-today-discuss-your-questions" class="slide level2">
-<h2>Goal for today: discuss your questions</h2>
-<p>What I did: read all your questions and identified key themes.</p>
-</section>
-<section id="running-out-of-data" class="slide level2">
-<h2>Running out of Data?</h2>
-<p>Broad q: If tech companies have already “scraped all they can”, are we going to see an “AI Winter”?</p>
-</section>
-<section id="background-on-ai-winter" class="slide level2">
-<h2>Background on AI winter</h2>
-<p>https://en.wikipedia.org/wiki/AI_winter</p>
-
-<img data-src="figs/7/ai_winter_atf.png" class="r-stretch"></section>
-<section id="ongoing-debate-about-synthetic-data" class="slide level2">
-<h2>Ongoing debate about “synthetic data”</h2>
+<section id="about-this-lecture" class="slide level2">
+<h2>About this lecture</h2>
 <ul>
-<li>reinvigorated TODAY by the Anthropic Claude 3 release</li>
-</ul>
-
-<img data-src="figs/7/2024-03-04_twitter_synthetic_data.png" class="r-stretch"></section>
-<section id="what-is-synthetic-data-exactly" class="slide level2">
-<h2>What is synthetic data, exactly?</h2>
-<ul>
-<li>My (current) take: “synthetic” is underspecified; source and generating model matter (not a particularly hot take)</li>
-<li>This is a very rapdily changing area!</li>
+<li>Goal is to integrate the Intro to LLMs (Karpathy’s video + several linked slide decks) with our LLM-data related readings and examples (Pile, RefinedWeb, blog posts on the topic)</li>
+<li>https://www.youtube.com/watch?v=zjkBMFhNj_g</li>
 </ul>
 </section>
-<section id="licensing-to-use-data" class="slide level2">
-<h2>Licensing to use data</h2>
+<section id="see-also" class="slide level2">
+<h2>See also</h2>
 <ul>
-<li>What do companies do now?</li>
-<li>What will they do in the next 1 to <span class="math inline">\(x\)</span> months as lawsuits resolve?</li>
-<li>What should they do?</li>
+<li>Thom Wolf (HuggingFace): https://docs.google.com/presentation/d/1IkzESdOwdmwvPxIELYJi8–K3EZ98_cL6c5ZcLKSyVg/edit#slide=id.g2c144c77cfe_0_76</li>
+<li>Graham Neubig (CMU): https://phontron.com/class/anlp2024/assets/slides/anlp-15-tourofllms.pdf</li>
 </ul>
 </section>
-<section id="prompt" class="slide level2">
-<h2>Prompt:</h2>
-<p>What do <em>you</em> prefer for <em>your data</em>?</p>
-</section>
-<section id="licensing-and-individual-consent" class="slide level2">
-<h2>Licensing and individual consent</h2>
+<section id="karpathys-two-files-mental-model" class="slide level2">
+<h2>Karpathy’s “Two files” mental model</h2>
 <ul>
-<li>What are key differences between a licensing-focused approach and a consent-focused approach?</li>
+<li>parameters (2 bytes for a float16 per param -&gt; 140 GB for a 70B param model)</li>
+<li>run.c (notes its 500 lines of C code!)</li>
 </ul>
 </section>
-<section id="why-pay-for-reddit-data" class="slide level2">
-<h2>Why pay for Reddit data</h2>
+<section id="a-few-useful-tidbits" class="slide level2">
+<h2>A few useful tidbits</h2>
 <ul>
-<li>Relates to previous question…</li>
-<li>Reddit has taken action to make scraping harder. And Google is gambling that paying might be better than getting sued in the future.</li>
-<li>Connects with another FAQ…</li>
+<li>Getting a sense of the file sizes can be useful</li>
+<li>Note the point about 7B being about 10x slower (linear) than 70B</li>
 </ul>
 </section>
-<section id="a-shift-towards-private-data" class="slide level2">
-<h2>A shift towards private data?</h2>
+<section id="more-useful-order-of-magnitude-figures" class="slide level2">
+<h2>More useful order of magnitude figures</h2>
+<p>For 140GB 70B params “file”:</p>
 <ul>
-<li>Will AI development return to a status quo in which all the “advantage” is extracted from private, secret datasets?</li>
+<li>10 TB of text “chunk of the Internet”</li>
+<li>6,000 GPUs for 12 days, costing about 2M USD (2.7M CAD)</li>
+<li>1e24 FLOPs. That’s 10 to the 24th!</li>
+</ul>
+<p>Quick question: What’s the compression ratio?</p>
+</section>
+<section id="lossy-compression" class="slide level2">
+<h2>Lossy compression</h2>
+<p>“Gestalt” of the actual knowledge / content</p>
+</section>
+<section id="what-about-prod-systems" class="slide level2">
+<h2>What about prod systems</h2>
+<ul>
+<li>About 10x in size</li>
+<li>10M or 100M dollars for training run (imagine being the person to enter <code>train.py</code>…)</li>
 </ul>
 </section>
-<section id="conceptual-issues-with-data-dividends" class="slide level2">
-<h2>Conceptual issues with data dividends</h2>
+<section id="about-the-predictions" class="slide level2">
+<h2>About the predictions</h2>
 <ul>
-<li>Counterproductive to collective action?</li>
-<li>Old critiques of UBI?</li>
+<li>It’s “just” a Neural Network!</li>
+<li>“dream” metaphor. Every output is a “dream”?</li>
+<li>it won’t parrot documents? How do we scare this with copyright lawsuits?</li>
 </ul>
 </section>
-<section id="data-strikes" class="slide level2">
-<h2>Data strikes</h2>
+<section id="transformer-architecture" class="slide level2">
+<h2>Transformer architecture</h2>
 <ul>
-<li>How would they actually work?</li>
-<li>When will they actually work?</li>
+<li>We know all the math, we can write it down</li>
+<li>But all we do as humans is to adjust the parameters to get better “next word”</li>
+<li>mechanistic interpretability (what are the parts doing?)</li>
+<li>weird one dimensional aspects to “knowledge” (e.g.&nbsp;Mother &lt;&gt; Son)</li>
+<li>hand-waving much of the implementation details for now (see longer 2 hour video, https://www.youtube.com/watch?v=kCc8FmEb1nY&amp;t=57s)</li>
+</ul>
+</section>
+<section id="llm-as-empirical-artifacts" class="slide level2">
+<h2>LLM as “empirical artifacts”</h2>
+<ul>
+<li>More like social science or physical science than (some fields) of computing science</li>
+<li>Not a lot of theory to explain things yet!</li>
+</ul>
+</section>
+<section id="assistant-models" class="slide level2">
+<h2>Assistant Models</h2>
+<ul>
+<li>Just add a new dataset with labeling instructions</li>
+<li>People ask questions and answer them</li>
+<li>There’s a bunch of secret troves of documents somewhere of “fake” conversations that look like ChatGPT conversations!</li>
+<li>fine tune on this “assistance dataset”, typically</li>
+<li>called RLHF</li>
+</ul>
+</section>
+<section id="timelines" class="slide level2">
+<h2>Timelines</h2>
+<p>Karpathy gives us the heuristic that pretraining is about once a year and finetuning can be once a week</p>
+<ul>
+<li>recall: 10 TB text, 6000 GPUs costing 2M USD over 12 days</li>
+<li>new info: about 100K high quality “ideal” Q&amp;A responses and comparisons of responses</li>
+<li>finetune might take one day</li>
+<li>(note that various online communities have created finetuned models for various purposes)</li>
+</ul>
+</section>
+<section id="responses-vs-candidates" class="slide level2">
+<h2>Responses vs Candidates</h2>
+<ul>
+<li>from labeling perspective, it’s quicker to pick between a few options vs.&nbsp;write something from scratch</li>
+<li>finetuning on comparions is implemented a bit differently than</li>
+</ul>
+</section>
+<section id="using-models-to-label" class="slide level2">
+<h2>Using models to label?</h2>
+<ul>
+<li>LLM creates a draft and people select from it…</li>
+<li>can do labeling that’s more “machine labeled”</li>
+<li>Implications?</li>
+</ul>
+</section>
+<section id="chatbot-arena" class="slide level2">
+<h2>Chatbot Arena</h2>
+<ul>
+<li>ELO rating</li>
+<li>You can play this today!</li>
+<li>Any problems with this?</li>
+</ul>
+</section>
+<section id="more-on-scaling-laws" class="slide level2">
+<h2>More on scaling laws</h2>
+<ul>
+<li>We can predict performance based on number of params, amount of text (N for number of params here, D for amount of data)</li>
+<li>We’re not in the flat zone yet!</li>
+<li>Next word prediction accuracy is correlated with other texts</li>
+<li>So everyone assumes training on more data or with more params will get better “general capabilities”</li>
+</ul>
+</section>
+<section id="example-capabilities" class="slide level2">
+<h2>Example capabilities</h2>
+<ul>
+<li>Example of ChatGPT using web browser, running code, passing query to text-to-image</li>
+<li>How could we build our own search on top of an open LLM. Any ideas?</li>
+<li>Other thoughts on current LLM <em>product</em> tool use?</li>
+</ul>
+</section>
+<section id="system-1-and-2" class="slide level2">
+<h2>System 1 and 2</h2>
+<ul>
+<li>“fast and slow”</li>
+<li>metaphor: LLMs only have system 1, no system 2</li>
+<li>How can convert time into accuracy?</li>
+<li>Question: How can you do this right now?</li>
+</ul>
+</section>
+<section id="self-improvement" class="slide level2">
+<h2>Self-improvement</h2>
+<ul>
+<li>Example of Go</li>
+<li>Basic idea: is if you have a simple reward function that says “was the thing good or bad” we can just use that reward</li>
+<li>What are contexts might work here?</li>
+<li>Interesting semi-example: Dota 2</li>
+</ul>
+</section>
+<section id="karpathys-vision-of-llm-os" class="slide level2">
+<h2>Karpathy’s vision of LLM OS</h2>
+<ul>
+<li>What did you think about this?</li>
+<li>Do you want this on your laptop? Your phone? A local cluster in the school library?</li>
+</ul>
+</section>
+<section id="jailbreaks" class="slide level2">
+<h2>“Jailbreaks”</h2>
+<ul>
+<li>How to get ChatGPT to tell us how to manufacture napalm through “roleplay”</li>
+<li>Active research area on “jailbreak attacks”</li>
+<li>Role play scenarios, base64 encoding, “universal transferable suffix”</li>
+<li>generally about bypassing system guardrails</li>
+<li>one human’s jailbreak is another human’s preferred behavior!</li>
+</ul>
+</section>
+<section id="other-attacks" class="slide level2">
+<h2>Other attacks</h2>
+<ul>
+<li>white image with faint text (classic resume hack)</li>
+<li>prompt injection attacks from a web page</li>
+<li>security knowledge will certainly remain relevant in post-LLM world :)</li>
+</ul>
+</section>
+<section id="data-poisoning" class="slide level2">
+<h2>Data poisoning</h2>
+<ul>
+<li>“trigger phrase” in a spy movie</li>
+<li>we can do this to LLMs?</li>
+</ul>
+</section>
+<section id="a-few-other-perspectives" class="slide level2">
+<h2>A few other perspectives</h2>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<p>Thom Wolf’s “stages of data training”</p>
+<ul>
+<li>Pretraining -&gt; instruction tuning -&gt; alignment -&gt; in-context learning -&gt; task-specific fine-tuning</li>
+<li>Suggestion: just pull up the <a href="https://docs.google.com/presentation/d/1IkzESdOwdmwvPxIELYJi8--K3EZ98_cL6c5ZcLKSyVg/edit#slide=id.g2c144c77cfe_0_76">slides</a> here</li>
+</ul>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p>Yi’s data cleaning pipeline</p>
+<ul>
+<li>Language filtering -&gt; Text Metric filtering</li>
+<li>-&gt; Repetitive Document Removal -&gt; Rule Based Correction</li>
+<li>-&gt; Perplexity filtering -&gt; Document Quality Filtering</li>
+<li>-&gt; Paragraph deduplication -&gt; MinHash Deduplication</li>
+<li>-&gt; Exact Deduplication -&gt; Semantic, topic, and safety filtering</li>
+</ul>
+<p>(Main point here is just the potential for <em>many</em> steps)</p>
+</section>
+<section id="quality-filtering-with-heuristics" class="slide level2">
+<h2>Quality filtering with heuristics</h2>
+<ul>
+<li>We might want to filter based on… word count, repetition, certain patterns in a document, various ratios (all caps), general descriptive stats</li>
+<li>This involves a lot of design decisions, however! Tough to do in a principled way</li>
+<li>See the full deck for lots of implementation details</li>
+</ul>
+</section>
+<section id="back-to-the-data" class="slide level2">
+<h2>Back to the data…</h2>
+<ul>
+<li>So we’re all on the same page of the high-level overview of how LLMs work</li>
+</ul>
+</section>
+<section id="looking-back-to-2020" class="slide level2">
+<h2>Looking back to 2020</h2>
+<ul>
+<li>We had info about GPT-3 training data</li>
+<li>WebText (Reddit links with 3 or more karma), Wikipedia, Books (mystery), Common Crawl</li>
+<li>“there’s already voting going on!”</li>
+</ul>
+</section>
+<section id="instructgpt-in-2022" class="slide level2">
+<h2>InstructGPT in 2022</h2>
+<ul>
+<li>InstructGPT (a precursor of modern ChatGPT model) has a model card with info about scraped data and human labelers</li>
+<li>Similar to 2020</li>
+<li>Also… Twitter was in the training data for some portion of time?</li>
+</ul>
+</section>
+<section id="important-note-the-role-of-high-quality-filters" class="slide level2">
+<h2>Important note: the role “of high quality filters”</h2>
+<ul>
+<li>Blog notes that “so whoever contributed high-quality content to said reference corpora is likely playing an amplified role”</li>
+<li>This can really skew the relative weights of different people</li>
+<li>Critical open research question: system-level data valuation</li>
+</ul>
+</section>
+<section id="pre-training-vs.-fine-tuning-data" class="slide level2">
+<h2>Pre-training vs.&nbsp;Fine-tuning data</h2>
+<p>What’s the difference between ideal pre-training and fine-tuning data?</p>
+</section>
+<section id="applying-it-to-your-interests" class="slide level2">
+<h2>Applying it to your interests</h2>
+<ul>
+<li>What’s the best data source for your need?</li>
+<li>What data do you want avoid?</li>
+<li>For your discussion section: What data do you want to have available in 5 years?</li>
 </ul>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
