@@ -427,8 +427,9 @@ Prof.&nbsp;Nick Vincent
 </section>
 <section id="document-as-the-meal" class="slide level2">
 <h2>Document as the meal</h2>
-
-<img data-src="figs/9/purple_line_info.png" class="r-stretch"></section>
+<p>“What hours does the Purple Line Express run?”</p>
+<p><img data-src="figs/9/purple_line_info.png"> <img data-src="figs/9/purple_line_edits.png"></p>
+</section>
 <section id="document-as-the-data" class="slide level2">
 <h2>Document as the data</h2>
 
@@ -502,7 +503,8 @@ Prof.&nbsp;Nick Vincent
 </section>
 <section id="wikipedia-articles-as-documents-that-answer-questions" class="slide level2">
 <h2>Wikipedia articles as documents that answer questions</h2>
-<p>Question answering involves aspects of both document retrieval (“serve” Wikipedia content) and machine “understanding” of text (e.g.&nbsp;the ability to identifying the portion of a document that answers a question). As such, these systems share similarities with both search engines and language models.</p>
+<p>Question answering involves aspects of both document retrieval (“serve” Wikipedia content) and machine “understanding” of text (e.g.&nbsp;the ability to identifying the portion of a document that answers a question).</p>
+<p>As such, these systems share similarities with both search engines and language models.</p>
 </section>
 <section class="slide level2">
 
@@ -530,9 +532,9 @@ Prof.&nbsp;Nick Vincent
 <section id="wikipedia-text-as-training-data" class="slide level2">
 <h2>Wikipedia text as training data</h2>
 <ul>
-<li>“KELM: Integrating Knowledge Graphs with Language Model Pre-training Corpora” - Siamak Shakeri et al.&nbsp;in NAACL 2021. https://ai.googleblog.com/2021/05/kelm-integrating-knowledge-graphs-with.html
+<li>“KELM: Integrating Knowledge Graphs with Language Model Pre-training Corpora” - Siamak Shakeri et al.&nbsp;in NAACL 2021. <a href="https://ai.googleblog.com/2021/05/kelm-integrating-knowledge-graphs-with.html">Link</a>
 <ul>
-<li>Uses ” a large training corpus of heuristically aligned Wikipedia text and Wikidata KG triples”</li>
+<li>Uses “a large training corpus of heuristically aligned Wikipedia text and Wikidata KG triples”</li>
 </ul></li>
 <li>“Language Models are Few-Shot Learners” - Tom B. Brown et al in arXiv, 2020. <a href="https://arxiv.org/abs/2005.14165">Link</a>
 <ul>
@@ -540,8 +542,8 @@ Prof.&nbsp;Nick Vincent
 </ul></li>
 </ul>
 </section>
-<section id="wikipedia-text-as-training-data-page-2" class="slide level2">
-<h2>Wikipedia text as training data (page 2)</h2>
+<section class="slide level2">
+
 <ul>
 <li>“BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding” - Jacob Devlin et al.&nbsp;in NAACL 2019. <a href="https://www.aclweb.org/anthology/N19-1423/">Link</a>
 <ul>
@@ -550,8 +552,8 @@ Prof.&nbsp;Nick Vincent
 </ul></li>
 </ul>
 </section>
-<section id="section-2" class="slide level2">
-<h2></h2>
+<section class="slide level2">
+
 <ul>
 <li>“Censorship of Online Encyclopedias: Implications for NLP Models” - Eddie Yang and Margaret E. Roberts in ACM FAccT, 2021. <a href="https://doi.org/10.1145/3442188.3445916">Link</a>
 <ul>
@@ -560,18 +562,17 @@ Prof.&nbsp;Nick Vincent
 </ul></li>
 </ul>
 </section>
-<section id="wikipedia-text-as-training-data-page-3" class="slide level2">
-<h2>Wikipedia text as training data (page 3)</h2>
+<section class="slide level2">
+
 <ul>
 <li>“Microsoft Word is getting politically correct” - Mark Sullivan in Fast Company, 2019. <a href="https://www.fastcompany.com/90346224/microsoft-word-is-getting-politically-correct">Link</a>
 <ul>
-<li>Summary: Microsoft Word adds an AI feature to help with word selection.</li>
-<li>Quote: “For the various new checks, Microsoft assembled a team of linguists and other experts to anticipate the poor word choices people might make, and assemble lists of terms that would work better, Office Intelligence product manager Malavika Rewari tells me. The AI’s training data also includes Wikipedia pages, which are constantly being updated and corrected.”</li>
+<li>Quote: “For the various new checks, Microsoft assembled a team of linguists and other experts to anticipate the poor word choices people might make, and assemble lists of terms that would work better… The AI’s training data also includes Wikipedia pages, which are constantly being updated and corrected.”<sup>1</sup></li>
 </ul></li>
 </ul>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Notable in light of faction mad about Wikipedia’s politics…</p></li></ol></aside></section>
+<section class="slide level2">
+
 <ul>
 <li>“WikiBrain: Democratizing computation on Wikipedia” - Shilad Sen et al.&nbsp;in OpenSym 2014. <a href="https://doi.org/10.1145/2641580.2641615">Link</a>
 <ul>
@@ -582,13 +583,17 @@ Prof.&nbsp;Nick Vincent
 </section>
 <section id="wikipedia-in-the-training-pipeline" class="slide level2">
 <h2>Wikipedia in the training pipeline</h2>
+<p>Sometimes Wikipedia “sneaks into” the training pipeline</p>
 <ul>
-<li>“ImageNet Large Scale Visual Recognition Challenge” - Russakoksky et al.&nbsp;in International Journal of Computer Vision, 2015. <a href="https://doi.org/10.1007/s11263-015-0816-y">Link</a></li>
+<li>“ImageNet Large Scale Visual Recognition Challenge” - Russakoksky et al.&nbsp;in International Journal of Computer Vision, 2015. <a href="https://doi.org/10.1007/s11263-015-0816-y">Link</a>
+<ul>
+<li>MAJOR influence on computer vision for the past 9 years.</li>
+</ul></li>
 </ul>
 </section>
 <section id="quote-from-the-imagenet-paper" class="slide level2">
 <h2>Quote from the ImageNet paper</h2>
-<p>Quote: “To collect a highly accurate dataset, we rely on humans to verify each candidate image collected in the previous step for a given synset. This is achieved by using Amazon Mechanical Turk (AMT), an online platform on which one can put up tasks for users for a monetary reward. With a global user base, AMT is particularly suitable for large scale labeling. In each of our labeling tasks, we present the users with a set of candidate images and the definition of the target synset (including a link to Wikipedia). We then ask the users to verify whether each image contains objects of the synset. We encourage users to select images regardless of occlusions, number of objects and clutter in the scene to ensure diversity.”</p>
+<p>“To collect a highly accurate dataset, we rely on humans to verify each candidate image collected in the previous step for a given synset. This is achieved by using Amazon Mechanical Turk (AMT)… In each of our labeling tasks, we present the users with a set of candidate images and the definition of the target synset (<em>including a link to Wikipedia</em>). We then ask the users to verify whether each image contains objects of the synset. We encourage users to select images regardless of occlusions, number of objects and clutter in the scene to ensure diversity.”</p>
 </section>
 <section id="wikipedia-in-the-training-pipeline-1" class="slide level2">
 <h2>Wikipedia in the training pipeline</h2>
@@ -603,7 +608,7 @@ Prof.&nbsp;Nick Vincent
 <section id="the-role-of-wikipedia-in-modern-nlp" class="slide level2">
 <h2>The Role of Wikipedia in modern NLP</h2>
 <ul>
-<li>See e.g.&nbsp;https://huggingface.co/datasets/wikitext
+<li>See the <a href="https://huggingface.co/datasets/wikitext">Wikitext dataset on HuggingFace</a>
 <ul>
 <li>897k downloads as of Mar 19, 2024</li>
 </ul></li>
@@ -611,6 +616,8 @@ Prof.&nbsp;Nick Vincent
 </section>
 <section id="stats-from-the-data-provenance-project" class="slide level2">
 <h2>Stats from the data provenance project</h2>
+
+<img data-src="figs/9/dataprov.png" class="r-stretch"><p><a href="https://www.dataprovenance.org/">link</a></p>
 </section>
 <section id="who-makes-the-rules-on-wikipedia" class="slide level2">
 <h2>Who makes the rules on Wikipedia?</h2>
@@ -618,10 +625,14 @@ Prof.&nbsp;Nick Vincent
 <li>Turns out there’s a lot of literature on this!</li>
 </ul>
 </section>
-<section id="section-4" class="slide level2">
-<h2></h2>
+<section class="slide level2">
+
 
 <img data-src="figs/9/forte_preview.png" class="r-stretch"></section>
+<section class="slide level2">
+
+
+<img data-src="figs/9/gscholar_wikigov.png" class="r-stretch"></section>
 <section id="why-use-wikipedia" class="slide level2">
 <h2>Why Use Wikipedia?</h2>
 <p>From <a href="https://arxiv.org/abs/1609.07843">Merity et al.&nbsp;2016</a></p>
@@ -640,23 +651,27 @@ Prof.&nbsp;Nick Vincent
 <h1>Design &lt;&gt; Modeling</h1>
 <ul>
 <li>The AI/ML community selected on Wikipedia because of the Wikipedia design principles / norms</li>
-<li>But thus we’re subject to weird governance boundaries</li>
+<li>But thus we’re subject to potentially surprising governance dependencies</li>
 </ul>
 <p>Example: what exactly is a “Good” article</p>
 </section>
 <section class="slide level2">
 
 <p>This is important because it means that the impact of design isn’t a <em>huge shock</em> to the ML community. Rather, there’s just a point of disconnect here.</p>
+<p>It’s not that this massive dependency on Wikipedia is <em>bad</em>, we just have to do more to account for it!</p>
 </section>
 <section id="compare-with-reddit" class="slide level2">
 <h2>Compare with Reddit</h2>
+<p>How <em>exactly</em> is downvoting implementing?</p>
+<p>How do subreddit-specific norms affect this?</p>
 
 <img data-src="figs/9/downvote_example.png" class="r-stretch"></section>
 <section id="design-influencing-data" class="slide level2">
 <h2>Design influencing data</h2>
 <ul>
-<li>The button design, how it’s communicated…</li>
+<li>Each button design, how actions are described and communicated…</li>
 <li>All these things affected what went into GPT-2 (which shaped a LOT of future capital allocation)</li>
+<li>What designs right now will affect GPT-10? The TikTok scroll pattern? Swiping left/right?</li>
 </ul>
 </section>
 <section id="other-platforms" class="slide level2">
@@ -707,6 +722,7 @@ Prof.&nbsp;Nick Vincent
 </div>
 </div>
 </section></section>
+
     </div>
   </div>
 
