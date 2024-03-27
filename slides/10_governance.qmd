@@ -1,0 +1,149 @@
+---
+title: "Platform design and data: a brief intro"
+date: "2024-03-19"
+author: "Prof. Nick Vincent"
+institute: "Simon Fraser University"
+jupyter: python3
+---
+
+# Visible front matter
+
+This slide contains content for March 27, 2024 lecture.
+
+## {auto-animate=true auto-animate-easing="ease-in-out"}
+
+::: {.r-hstack}
+::: {data-id="box1" auto-animate-delay="0" style="background: #00ff9f; width: 200px; height: 150px; margin: 10px;"}
+:::
+
+::: {data-id="box2" auto-animate-delay="0.1" style="background: #00b8ff; width: 200px; height: 150px; margin: 10px;"}
+:::
+
+::: {data-id="box3" auto-animate-delay="0.2" style="background: #001eff; width: 200px; height: 150px; margin: 10px;"}
+:::
+
+::: {data-id="box4" auto-animate-delay="0.2" style="background: #bd00ff; width: 200px; height: 150px; margin: 10px;"}
+:::
+
+:::
+
+## {auto-animate=true auto-animate-easing="ease-in-out"}
+
+::: {.r-stack}
+::: {data-id="box1" style="background: #00ff9f; width: 350px; height: 350px; border-radius: 200px;"}
+:::
+
+::: {data-id="box2" style="background: #00b8ff; width: 250px; height: 250px; border-radius: 200px;"}
+:::
+
+::: {data-id="box3" style="background: #001eff; width: 150px; height: 150px; border-radius: 200px;"}
+:::
+
+::: {data-id="box4" style="background: #bd00ff; width: 50px; height: 50px; border-radius: 200px;"}
+:::
+:::
+
+
+# Data Governance
+
+
+## Goals
+
+Today's lecture: gain exposure to different frameworks for data governance.
+
+- How are data governance decisions being made now?
+- What kind of interaction with "governance" will you have in the future? As a voter, as a modeler, as a data creator, etc.
+
+
+## Recap: What is governance
+
+"Governance is the process of making and enforcing decisions within an organization or society. It encompasses decision-making, rule-setting, and enforcement mechanisms to guide the functioning of an organization or society." [WP](https://en.wikipedia.org/wiki/Governance) 
+
+"the sum of the many ways individuals and institutions, public and private, manage their common affairs"" (Commission on
+Global Governance)
+
+Pick your favorite LLM and get an answer like this
+
+## C.f. Global Climate Governance
+
+Can be useful to think about data governance as a paralell to climate governance. What are the current processes in place to determine how new climate laws are passed, how they're enforced, how they do (or do not) cascade between states
+
+
+## What's NOT governance...
+
+- Things that happen in nature, outside the scope of an organization, maybe
+- You can make a really strong argument for much of the physical and social world being part of, or subject to, some governance process though
+- Not a big deal for our immediate concerns, but the point here is to emphasize the flexibility of the word (and the value of frameworks)
+
+## Outline
+
+- The LLM model from Jernite et al. (with a big team of et al.'s!)
+- CARE principles and indigenous data governance
+- Intro to some other frames of thinking
+
+# Data Governance for LLMs
+
+---
+
+Figures here are from
+
+![](figs/10/gov1.png)
+
+## 
+
+Key differences of the LLM era are even more 
+
+- "generality"
+- scale( "Wikipedia-scale corpora to close to three orders of magnitude more", Jernite et al., Section 1)
+
+---
+
+![](figs/10/gov_fig1.png)
+
+---
+
+Note: "design a new governance structure" = change the rules or norms (implicitly, it's about policy change and changing implicit rules)
+
+## The "DSO"
+
+Key idea of this paper is a "Data Stewardship Organization" -- a new org that would act as a facilitator (e.g., talk to data creators and data subjects, but also talk to modelers and legal teams and such)
+
+## Distinction between laws and tools
+
+![](figs/10/gov_fig2.png)
+
+## Values and Governance
+
+![]()figs/10/gov_fig4.png)
+
+## Important concerns from the paper to flag
+
+- ML community values performance (Birhane et al., citation 18)
+- role of European regulatory drive
+- how to share benefits equitably?
+- issues with human rights framing (many conflicting documents)
+- Critical perspectives: human rights and decoloniality
+
+## Specifity of data governance
+
+This paper really focuses on language data, with a call out for human-centric data.
+
+How might other modalities disrupt this proposal?
+
+## Another Lifecycle of Data
+
+- Creation
+- Selection
+- Documentation
+- Dissemination
+- Hosting
+- Serving
+- Conservation
+- Tracking
+- Versioning
+- Deletion
+
+
+## Actors involved
+
+![](figs/10/gov_tab2_tab3.png)
