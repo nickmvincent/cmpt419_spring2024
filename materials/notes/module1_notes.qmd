@@ -73,7 +73,6 @@ Here are some terms that may be helpful to quickly look up if they feel unfamili
 - benchmarks
 - model-centric research
 - scoring metrics
-- challenges-based approach to ML research
 
 
 ### Socio-technical concepts
